@@ -1,0 +1,16 @@
+{
+  "name": "sfmovies-databuilder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build the data for the main client-side app, this would ideally be real-time and work on the node layer, but I want to focus on the client-side code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "moviedb": "^0.2.7",
+    "bottleneck": "^1.15.0"
+  }
+}
