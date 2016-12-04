@@ -1,0 +1,77 @@
+/* Movie Card Styles */
+.movie-card {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	position: relative;
+	height: 240px;
+	padding: 0;
+	margin: 24px;
+	float: left;
+}
+.movie-card__content {
+	position: relative;
+	flex: 1;
+	min-width: 0;
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-weight: 300;
+}
+.movie-card__title,
+.movie-card__rating {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.movie-card__title-text {
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: 400;
+	letter-spacing: -0.8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	margin: 0;
+	padding: 24px 0 8px 0;
+}
+.movie-card__subtitle-text {
+	font-size: 14px;
+	font-weight: 300;
+	color: rgba(0, 0, 0, 0.5);
+}
+.movie-card__rating {
+	position: absolute;
+	bottom: 48px;
+	margin-top: 16px;
+	margin-bottom: 8px;
+	color: rgba(0, 0, 0, 0.3);
+}
+.movie-card__rating > i {
+	font-size: 16px;
+	/*line-height: 16px;*/
+}
+.movie-card__rating-text {
+	position: relative;
+	display: inline-block;
+	padding-left: 4px;
+	bottom: 4px;
+	font-size: 12px;
+	/*line-height: 12px;*/
+}
+.movie-card .mdl-card__actions {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+}
+.movie-card__media {
+	position: relative;
+	z-index: 2;
+}
+.movie-card__media object,
+.movie-card__media img {
+	width: 160px;
+	height: 240px;
+	margin: 0;
+	padding: 0;
+}

@@ -1,0 +1,13 @@
+truncateOverview(overview) {
+	let buffer = '';
+	this.props.mData.movie.overview.split(/\s+/).some(function(word) {
+		buffer += word;
+		if (buffer.length >= 100) {
+			buffer += '…';
+			return true;
+		} else {
+			buffer += ' ';
+		}
+	});
+	return buffer;
+}
