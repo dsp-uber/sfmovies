@@ -1,5 +1,5 @@
 /* Movie Card Styles */
-.movie-card {
+.movie-card.mdl-card {
 	position: relative;
 	padding: 0;
 	margin: 0 auto 12px;
@@ -68,8 +68,9 @@
 
 /* Movie Card Styles for Mobile */
 @media (max-width: 535px) {
-	.movie-card {
+	.movie-card.mdl-card {
 		width: 100%;
+		height: auto;
 		position: relative;
 	}
 	.movie-card__media,
@@ -98,8 +99,9 @@
 
 /* Movie Card Styles for Tablet/Desktop */
 @media (min-width: 535px) {
-	.movie-card {
+	.movie-card.mdl-card {
 		width: 160px;
+		height: auto;
 	}
 	.movie-card__content {
 		height: 120px;
