@@ -1,23 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { createStore } from 'redux';
+import sfMoviesApp from './app/duck';
+import Root from './app/Root';
 
 import 'material-design-lite/material.css';
 import './material.amber-orange.min.css';
 import 'material-design-lite';
 
-import App from './app/App';
-import MovieList from './MovieList/MovieList';
-import MovieMap from './MovieMap/MovieMap';
+let store = createStore(sfMoviesApp);
 
 ReactDOM.render(
-	<Router history={browserHistory}>
-		<Route path="/" component={App}>
-			<IndexRoute component={MovieList} />
-			<Route path="map" component={MovieMap}>
-				<Route path="/map/:movieId" component={MovieMap}/>
-			</Route>
-		</Route>
-	</Router>,
+	<Root store={store}></Root>,
 	document.getElementById('root')
 );

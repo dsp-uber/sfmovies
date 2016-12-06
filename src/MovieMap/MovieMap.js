@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class MovieMap extends Component {
-	render() {
-		return (
-			<div>
-				movie map
-				<Link to="/">list</Link>
-			</div>
-		);
-	}
-}
+const MovieMap = ({locations}) => (
+	<div>
+		movie map
+		<Link to="/">list</Link>
+	</div>
+);
+
+MovieMap.propTypes = {
+	locations: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		movieId: PropTypes.string.isRequired,
+		origAddress: PropTypes.string.isRequired,
+		funFacts: PropTypes.string,
+		address: PropTypes.string,
+		lat: PropTypes.number,
+		lon: PropTypes.number
+	})).isRequired
+};
+
+export default MovieMap;
