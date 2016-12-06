@@ -1,0 +1,37 @@
+/* Movie List Styles */
+.movie-list {
+	padding: 12px;
+}
+
+/* MDL Grid overrides */
+
+@media (max-width: 2560px) {
+	.movie-list > .movie-list-cell-special {
+		width: calc(10% - 16px);
+	}
+}
+@media (max-width: 1800px) {
+	.movie-list > .movie-list-cell-special {
+		width: calc(16% - 16px);
+	}
+}
+@media (max-width: 1200px) {
+	.movie-list > .movie-list-cell-special {
+		width: calc(20% - 16px);
+	}
+}
+@media (max-width: 920px) {
+	.movie-list > .movie-list-cell-special {
+		width: calc(25% - 16px);
+	}
+}
+@media (max-width: 715px) {
+	.movie-list > .movie-list-cell-special {
+		width: calc(33% - 16px);
+	}
+}
+@media (max-width: 535px) {
+	.movie-list > .movie-list-cell-special {
+		width: calc(100%);
+	}
+}

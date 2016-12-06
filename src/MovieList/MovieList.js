@@ -4,13 +4,15 @@ import MovieCard from '../MovieCard/MovieCard';
 
 import movies from '../../resources/movies.json';
 
+import './movieList.css';
+
 export default class MovieList extends Component {
 	render() {
 		return (
-			<div className="xmdl-grid">
+			<div className="movie-list mdl-grid">
 				{movies.map(function(mData) {
 					return (
-						<div key={mData.movie.id} className="xmdl-cell xmdl-cel--3-col">
+						<div key={mData.movie.id} className="mdl-cell movie-list-cell-special">
 							<MovieCard mData={mData} />
 						</div>
 					);

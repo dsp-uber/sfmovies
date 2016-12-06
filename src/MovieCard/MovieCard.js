@@ -23,6 +23,17 @@ export default class MovieCard extends Component {
 	render() {
 		return (
 			<div className="movie-card mdl-card mdl-shadow--2dp">
+				<div
+					className="movie-card__media mdl-card__media"
+					style={{
+						'background-image':
+							'url(https://image.tmdb.org/t/p/w780/' +
+							this.props.mData.movie.posterPath +
+						')'
+					}}
+				>
+				</div>
+				<div className="movie-card__nomedia"></div>
 				<div className="movie-card__content">
 					<div className="movie-card__title">
 						<h2
@@ -43,16 +54,11 @@ export default class MovieCard extends Component {
 							({this.props.mData.movie.voteCount})
 						</span>
 					</div>
-					<div className="mdl-card__actions mdl-card--border">
-						<a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+					<div className="movie-card__actions mdl-card__actions mdl-card--border">
+						<a className="movie-card__button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 							View on map
 						</a>
 					</div>
-				</div>
-				<div className="movie-card__media">
-					<object data={'https://image.tmdb.org/t/p/w780/' + this.props.mData.movie.posterPath} type="image/jpeg">
-						<img src="https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png" alt="Movie poster"/>
-					</object>
 				</div>
 			</div>
 		);

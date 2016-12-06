@@ -1,37 +1,26 @@
 /* Movie Card Styles */
 .movie-card {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
 	position: relative;
-	height: 240px;
 	padding: 0;
-	margin: 24px;
-	float: left;
+	margin: 0 auto 12px;
 }
 .movie-card__content {
 	position: relative;
-	flex: 1;
-	min-width: 0;
-	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 	font-weight: 300;
 }
-.movie-card__title,
-.movie-card__rating {
-	padding-left: 16px;
-	padding-right: 16px;
-}
-.movie-card__title-text {
-	font-size: 24px;
-	line-height: 24px;
-	font-weight: 400;
-	letter-spacing: -0.8px;
+.movie-card__title-text,
+.movie-card__subtitle-text {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	width: 100%;
+	line-height: 1.5;
+}
+.movie-card__title-text {
 	margin: 0;
-	padding: 24px 0 8px 0;
+	padding: 16px 0 4px;
+	font-size: 16px;
+	letter-spacing: -0.8px;
 }
 .movie-card__subtitle-text {
 	font-size: 14px;
@@ -39,15 +28,11 @@
 	color: rgba(0, 0, 0, 0.5);
 }
 .movie-card__rating {
-	position: absolute;
-	bottom: 48px;
-	margin-top: 16px;
-	margin-bottom: 8px;
+	margin: 16px 0 0;
 	color: rgba(0, 0, 0, 0.3);
 }
 .movie-card__rating > i {
 	font-size: 16px;
-	/*line-height: 16px;*/
 }
 .movie-card__rating-text {
 	position: relative;
@@ -55,23 +40,84 @@
 	padding-left: 4px;
 	bottom: 4px;
 	font-size: 12px;
-	/*line-height: 12px;*/
-}
-.movie-card .mdl-card__actions {
-	position: absolute;
-	z-index: 1;
-	left: 0;
-	bottom: 0;
-	text-align: center;
 }
 .movie-card__media {
-	position: relative;
 	z-index: 2;
 }
-.movie-card__media object,
-.movie-card__media img {
-	width: 160px;
-	height: 240px;
+.movie-card__media,
+.movie-card__nomedia {
+	position: relative;
+	line-height: 0;
 	margin: 0;
 	padding: 0;
+	background-color: transparent;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+}
+
+.movie-card__nomedia {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-image: url(https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png);
+}
+
+/* Movie Card Styles for Mobile */
+@media (max-width: 535px) {
+	.movie-card {
+		width: 100%;
+		position: relative;
+	}
+	.movie-card__media,
+	.movie-card__nomedia {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 34.94766%;
+	}
+	.movie-card__content {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 61.8%;
+	}
+	.movie-card__actions {
+		position: absolute;
+		bottom: 0;
+	}
+	.movie-card__button {
+		float: right;
+	}
+}
+
+/* Movie Card Styles for Tablet/Desktop */
+@media (min-width: 535px) {
+	.movie-card {
+		width: 160px;
+	}
+	.movie-card__content {
+		height: 120px;
+	}
+	.movie-card__title,
+	.movie-card__rating {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+	.movie-card__title-text {
+		width: 100%;
+	}
+	.movie-card__media,
+	.movie-card__nomedia {
+		width: 160px;
+		height: 240px;
+	}
+	.movie-card__actions {
+		display: none;
+	}
 }
