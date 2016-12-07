@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import { MoviePropType } from '../MovieCard/MovieCard';
 
 const MovieMap = ({locations}) => (
 	<div>
@@ -9,6 +11,7 @@ const MovieMap = ({locations}) => (
 );
 
 MovieMap.propTypes = {
+	movie: MoviePropType,
 	locations: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		movieId: PropTypes.string.isRequired,

@@ -10,8 +10,9 @@ const Root = ({ store }) => (
 	<Provider store={store}>
 		<Router history={hashHistory}>
 			<Route path="/" component={App}>
-				<IndexRoute component={MovieListContainer} />
 				<Route path="map" component={MovieMap}></Route>
+				<Route path="/about" component={About}/>
+				<Route path="*" component={MovieListContainer} />
 			</Route>
 		</Router>
 	</Provider>

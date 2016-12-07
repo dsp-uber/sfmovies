@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-import { openMovieMap } from '../app/duck';
+import { selectMovieAndShowMap } from '../ducks/movies';
 import MovieList from './MovieList';
 
 const mapStateToProps = (state) => {
 	return {
-		movies: state.movies
+		movies: state.movies.movies
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onMovieClick: (id) => {
-			dispatch(openMovieMap(id));
+		onMovieClick: (movie) => {
+			dispatch(selectMovieAndShowMap(movie));
 		}
 	}
 };

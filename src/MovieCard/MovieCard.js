@@ -22,7 +22,10 @@ const getStarRating = function(rating) {
 };
 
 const MovieCard = ({mData, onClick}) => (
-	<div className="movie-card mdl-card mdl-shadow--2dp">
+	<div
+		onClick={onClick}
+		className="movie-card mdl-card mdl-shadow--2dp"
+	>
 		<div
 			className="movie-card__media mdl-card__media"
 			style={{
@@ -56,31 +59,35 @@ const MovieCard = ({mData, onClick}) => (
 					({mData.movie.voteCount})
 				</span>
 			</div>
+			{/*
 			<div className="movie-card__actions mdl-card__actions mdl-card--border">
 				<a className="movie-card__button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 					View on map
 				</a>
 			</div>
+			*/}
 		</div>
 	</div>
 );
 
+export const MoviePropType = PropTypes.shape({
+	id: PropTypes.string.isRequired,
+	originalTitle: PropTypes.string.isRequired,
+	year: PropTypes.string.isRequired, //should be number
+	tmdbId: PropTypes.string,
+	title: PropTypes.string,
+	overview: PropTypes.string,
+	language: PropTypes.string,
+	genres: PropTypes.arrayOf(PropTypes.number),
+	posterPath: PropTypes.string,
+	popularity: PropTypes.number,
+	voteAverage: PropTypes.number,
+	voteCount: PropTypes.number
+});
+
 MovieCard.propTypes = {
 	mData: PropTypes.shape({
-		movie: PropTypes.shape({
-			id: PropTypes.string.isRequired,
-			originalTitle: PropTypes.string.isRequired,
-			year: PropTypes.string.isRequired, //should be number
-			tmdbId: PropTypes.string,
-			title: PropTypes.string,
-			overview: PropTypes.string,
-			language: PropTypes.string,
-			genres: PropTypes.arrayOf(PropTypes.number),
-			posterPath: PropTypes.string,
-			popularity: PropTypes.number,
-			voteAverage: PropTypes.number,
-			voteCount: PropTypes.number
-		}).isRequired
+		movie: MoviePropType.isRequired
 	}).isRequired,
 	onClick: PropTypes.func.isRequired
 };

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import MovieCard from '../MovieCard/MovieCard';
+import MovieCard, { MoviePropType } from '../MovieCard/MovieCard';
 import './movieList.css';
 
 const MovieList = ({movies, onMovieClick}) => (
@@ -11,7 +11,7 @@ const MovieList = ({movies, onMovieClick}) => (
 					className="mdl-cell movie-list-cell-special">
 					<MovieCard
 						mData={mData}
-						onClick={() => onMovieClick(mData.movie.id)}
+						onClick={() => onMovieClick(mData)}
 					/>
 				</div>
 			);
@@ -20,7 +20,7 @@ const MovieList = ({movies, onMovieClick}) => (
 );
 
 MovieList.propTypes = {
-	movies: PropTypes.arrayOf(MovieCard.propTypes.mData).isRequired,
+	movies: PropTypes.arrayOf(MoviePropType).isRequired,
 	onMovieClick: PropTypes.func.isRequired
 };
 

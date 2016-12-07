@@ -1,5 +1,5 @@
 'use strict';
-const secretKeys = require('./secrets.json');
+const secretKeys = require('../secrets.json');
 
 const fs = require('fs');
 const https = require('https');
