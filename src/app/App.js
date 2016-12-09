@@ -1,6 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as moviesActions from '../ducks/movies';
 
-export default class App extends Component {
+class App extends Component {
+	componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(moviesActions.loadGenres());
+		dispatch(moviesActions.loadMovies());
+	}
 	render() {
 		return (
 			<div className="mdl-layout mdl-js-layout">
@@ -9,3 +16,5 @@ export default class App extends Component {
 		);
 	}
 }
+
+export default connect()(App);

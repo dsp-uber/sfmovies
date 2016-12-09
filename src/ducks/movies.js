@@ -1,40 +1,36 @@
-// import MovieDBClient from 'moviedb';
-import { getParameterByName, generateUrl } from '../app/utils';
+import request from 'request';
 import { history } from '../app/store';
-
-import movies from '../../resources/movies.json';
-
-// import secretKeys from '../secrets.json';
-
-// const MovieDB = MovieDBClient(secretKeys.tmdb);
+import * as uiActions from './ui';
+import MovieDBClient from 'moviedb';
+import secretKeys from '../../secrets.json';
+const MovieDB = MovieDBClient(secretKeys.tmdb);
 
 // Actions
-const SELECT_MOVIE = 'sfmovies/movies/SELECT_MOVIE';
-const SEARCH_MOVIE = 'sfmovies/movies/SEARCH_MOVIE';
-// const LOAD_MOVIES = 'sfmovies/movies/LOAD_MOVIES';
+const SHOW_MOVIE = 'sfmovies/movies/SHOW_MOVIE';
+const SHOW_MOVIES = 'sfmovies/movies/SHOW_MOVIES';
+const STORE_GENRES = 'sfmovies/movies/STORE_GENRES';
 
 const MOVIES_INIT = {
-	movies: movies,
-	count: 0,
-	query: getParameterByName('query'),
-	currentMovie: {}
+	movies: [],
+	genres: {},
+	activeMovie: {}
 };
 
 // Reducer
 export default function reducer(state = MOVIES_INIT, action = {}) {
 	switch (action.type) {
-		case SELECT_MOVIE:
+		case SHOW_MOVIE:
 			return Object.assign({}, state, {
-				currentMovie: action.movie
+				activeMovie: action.movie
 			});
-		case SEARCH_MOVIE:
+		case SHOW_MOVIES:
 			return Object.assign({}, state, {
-				query: action.query
+				movies: action.movies
 			});
-		// case LOAD_MOVIES:
-		// 	return Object.assign({}, state, {
-		// 		movies: action.movies
-		// 	});
+		case STORE_GENRES:
+			return Object.assign({}, state, {
+				genres: action.genres
+			});
 		default:
 			return state;
 	}
@@ -42,43 +38,122 @@ export default function reducer(state = MOVIES_INIT, action = {}) {
 
 // Action Creators
 
-export function selectMovie(movie) {
+export function showMovie(movie) {
 	return {
-		type: SELECT_MOVIE,
+		type: SHOW_MOVIE,
 		movie
 	};
 }
-export function searchMovie(query) {
+export function showMovies(movies) {
 	return {
-		type: SEARCH_MOVIE,
-		query
+		type: SHOW_MOVIES,
+		movies
 	};
 }
-export function changeSearchAndLoadMovies(query) {
-	return (dispatch, getState) => {
-		dispatch(searchMovie(query));
-		// history.push({
-		// 	query: generateUrl(getState().movies)
-		// });
-		// Querying the API would go here
+export function storeGenres(genres) {
+	return {
+		type: STORE_GENRES,
+		genres
 	};
 }
-export function selectMovieAndShowMap(movie) {
+export function openMovies() {
 	return (dispatch, getState) => {
-		dispatch(selectMovie(movie));
 		history.push({
-			search: 'map'
+			search: '/'
 		});
 	};
 }
-// export function loadMovie(tmdbId) {
-// 	return (dispatch, getState) => {
-// 		const currentMovie = getState().movie;
-// 		MovieDB.movieInfo({id: tmdbId}, (err, res) => {
-// 			if (res) {
-// 				// merge movie objects in redux
-// 				dispatch(selectMovie())
-// 			}
-// 		});
-// 	};
-// }
+export function loadMovies() {
+	return (dispatch, getState) => {
+		dispatch(uiActions.setLoading(true));
+		request(
+			window.location.protocol +
+			'//' +
+			window.location.host +
+			process.env.PUBLIC_URL +
+			'/static/movies.json',
+			(err, res, body) => {
+				if (!err && res.statusCode === 200) {
+					let movies = [];
+					try {
+						movies = JSON.parse(body);
+					} catch (e) {
+						console.error('Failure while loading movies.', e);
+					}
+					dispatch(uiActions.setLoading(false));
+					dispatch(showMovies(movies))
+				}
+			}
+		);
+	};
+}
+export function loadGenres() {
+	return (dispatch, getState) => {
+		dispatch(uiActions.setLoading(true));
+		request(
+			window.location.protocol +
+			'//' +
+			window.location.host +
+			process.env.PUBLIC_URL +
+			'/static/genres.json',
+			(err, res, body) => {
+				if (!err && res.statusCode === 200) {
+					let genres = [];
+					try {
+						genres = JSON.parse(body);
+					} catch (e) {
+						console.error('Failure while loading genres.', e);
+					}
+					dispatch(uiActions.setLoading(false));
+					dispatch(storeGenres(genres))
+				}
+			}
+		);
+	};
+}
+export function loadMovie(movie) {
+	return (dispatch, getState) => {
+		dispatch(uiActions.setLoading(true));
+		dispatch(showMovie(Object.assign({}, movie)));
+		if (movie.tmdbId) {
+			MovieDB.movieInfo({id: movie.tmdbId}, (err, res) => {
+				if (res) {
+					// merge movie objects in redux
+					dispatch(showMovie(Object.assign({},
+						getState().currentMovie,
+						res
+					)));
+				}
+			});
+		}
+	};
+}
+export function loadMovieById(id) {
+	return (dispatch, getState) => {
+		dispatch(uiActions.setLoading(true));
+		const movies = Object.assign({},
+			getState().movies
+		);
+		let activeMovie = {};
+		Object.keys(movies).some((key) => {
+			let movie = movies[key];
+			if (movie.movie.id === id) {
+				activeMovie = movie;
+				return true;
+			}
+			return false;
+		});
+		if (activeMovie) {
+			dispatch(loadMovie(activeMovie));
+		} else {
+			dispatch(openMovies());
+		}
+	};
+}
+export function openMovie(movie) {
+	return (dispatch, getState) => {
+		history.push({
+			search: 'map/' + movie.movie.id
+		});
+	};
+}

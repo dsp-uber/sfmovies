@@ -11,17 +11,13 @@ import MovieListContainer from './MovieList/MovieListContainer';
 import MovieMapContainer from './MovieMap/MovieMapContainer';
 import About from './app/About.js';
 
-import 'material-design-lite/material.css';
-import './material.amber-orange.min.css';
-import 'material-design-lite';
-
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
 			<Route path="/" component={App}>
 				<IndexRoute component={MovieListContainer} />
 
-				<Route path="/map" component={MovieMapContainer} />
+				<Route path="/map/:id" component={MovieMapContainer} />
 
 				<Route path="/about" component={About}/>
 

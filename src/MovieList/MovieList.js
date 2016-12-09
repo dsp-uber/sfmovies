@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import MovieCard, { MoviePropType } from '../MovieCard/MovieCard';
+import { MoviePropType } from '../MovieCard/MovieCard';
+import MovieCardContainer from '../MovieCard/MovieCardContainer';
 import './movieList.css';
 
 const MovieList = ({movies, onMovieClick}) => (
@@ -9,7 +10,7 @@ const MovieList = ({movies, onMovieClick}) => (
 				<div
 					key={mData.movie.id}
 					className="mdl-cell movie-list-cell-special">
-					<MovieCard
+					<MovieCardContainer
 						mData={mData}
 						onClick={() => onMovieClick(mData)}
 					/>

@@ -3,19 +3,13 @@ import MovieMap from './MovieMap';
 
 const mapStateToProps = (state) => {
 	return {
-		movie: state.movies.currentMovie.movie,
-		locations: state.movies.currentMovie.locations,
+		movie: state.movies.activeMovie.movie,
+		locations: state.movies.activeMovie.locations,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-	}
-};
-
 const MovieMapContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
+	mapStateToProps
 )(MovieMap);
 
 export default MovieMapContainer;

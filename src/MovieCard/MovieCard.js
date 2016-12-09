@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
 import './movieCard.css';
 
-// @TODO this should go into the container
-import genres from '../../resources/genres.json';
-
 const getStarRating = function(rating) {
 	const fiveStarRating = rating.toFixed() / 2;
 	let ratingIcons = [];
@@ -21,7 +18,7 @@ const getStarRating = function(rating) {
 	return ratingIcons;
 };
 
-const MovieCard = ({mData, onClick}) => (
+const MovieCard = ({mData, onClick, genres}) => (
 	<div
 		onClick={onClick}
 		className="movie-card mdl-card mdl-shadow--2dp"
