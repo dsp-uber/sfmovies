@@ -1,17 +1,31 @@
 import { connect } from 'react-redux';
-import { openMovie } from '../ducks/movies';
+import {
+	fetchMovieFromTMDbAndSetActive,
+	filterMovies,
+	loadMovieById,
+	navToMovieList
+} from '../ducks/movies';
 import MovieList from './MovieList';
 
 const mapStateToProps = (state) => {
 	return {
-		movies: state.movies.movies
+		movies: state.movies.visibleMovies
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onMovieClick: (movie) => {
-			dispatch(openMovie(movie));
+			dispatch(fetchMovieFromTMDbAndSetActive(movie));
+		},
+		onSearch: (query) => {
+			dispatch(filterMovies(query));
+		},
+		fetchMovieById: (movieId) => {
+			dispatch(loadMovieById(movieId));
+		},
+		navToMovieList: () => {
+			dispatch(navToMovieList());
 		}
 	}
 };

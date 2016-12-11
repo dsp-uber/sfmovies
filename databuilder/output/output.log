@@ -355,14 +355,14 @@
 [GEO] Searched for:   Hills Brothers Plaza (Embarcadero at Harrison Street)
 [GEO] Found address:  Harrison St, San Francisco, CA, USA
 [GEO] Searched for:   San Francisco International Airport
-[GEO] Found address:  SFO, 4 Dublin St, San Francisco, CA 94112, USA
+[GEO] Found address:  San Francisco, CA, USA
 [STR] Storing result
 >>>>> Searching for A View to a Kill (1985)
 [GEO] Locating 11 addresses
 [GEO] Searched for:   City Hall
 [GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   Port of San Francisco
-[GEO] Found address:  Port Of San Francisco, Pier 1 The Embarcadero, San Francisco, CA 94105, USA
+[GEO] Found address:  Port Of San Francisco, Pier 1 The Embarcadero, San Francisco, CA 94111, USA
 [GEO] Searched for:   Lefty O' Doul Drawbridge/ 3rd Street Bridge (3rd Street, China Basin)
 [GEO] Found address:  3rd St, San Francisco, CA 94107, USA
 [GEO] Searched for:   Golden Gate Bridge
@@ -427,7 +427,7 @@
 >>>>> Searching for Age of Adaline (2015)
 [GEO] Locating 5 addresses
 [GEO] Searched for:   Pier 50- end of the pier
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  Pier 9, San Francisco, CA 94111, USA
 [GEO] Searched for:   California @ Montgomery
 [GEO] Found address:  California St & Montgomery St, San Francisco, CA 94104, USA
 [GEO] Searched for:   Montgomery/Green
@@ -513,7 +513,7 @@
 >>>>> Searching for Around the Fire (1998)
 [GEO] Locating 1 addresses
 [GEO] Searched for:   Ocean Beach
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  San Francisco, CA, USA
 [STR] Storing result
 >>>>> Searching for Attack of the Killer Tomatoes (1978)
 [GEO] Locating 1 addresses
@@ -631,7 +631,7 @@
 [GEO] Searched for:   Alcatraz Island
 [GEO] Found address:  Alcatraz Island, San Francisco, CA 94133, USA
 [GEO] Searched for:   Pier 43 1/2
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  Pier 43 1/2, 43 1/2 Fishermans Wharf, San Francisco, CA 94133, USA
 [STR] Storing result
 >>>>> Searching for Birth of the Dragon (2016)
 [GEO] Locating 11 addresses
@@ -999,7 +999,7 @@
 >>>>> Searching for Dim Sum: A Little Bit of Heart (1985)
 [GEO] Locating 3 addresses
 [GEO] Searched for:   San Francisco International Airport
-[GEO] Found address:  SFO, 4 Dublin St, San Francisco, CA 94112, USA
+[GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   Li Po (916 Grant Avenue at Washington, Chinatown)
 [GEO] Found address:  Chinatown, San Francisco, CA, USA
 [GEO] Searched for:   Chinatown
@@ -1026,7 +1026,7 @@
 [GEO] Searched for:   343 Union Street
 [GEO] Found address:  343 Union St, San Francisco, CA 94133, USA
 [GEO] Searched for:   Pier 39 San Francisco
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  PIER 39, San Francisco, CA 94133, USA
 [GEO] Searched for:   Pier 14 San Francisco
 [GEO] Found address:  Pier 14, San Francisco, CA 94105, USA
 [GEO] Searched for:   Chaya / Perry's 132 Embarcadero
@@ -1038,7 +1038,7 @@
 [GEO] Searched for:   San Francisco City Hall
 [GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   San Francisco Airport
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  J C Decaux San Francisco, 81 Dorman Ave # B, San Francisco, CA 94124, USA
 [GEO] Searched for:   Benu Restaurant, 22 Hawthorne Street
 [GEO] Found address:  22 Hawthorne St, San Francisco, CA 94105, USA
 [GEO] Searched for:   California Street between Front and Davis
@@ -1143,7 +1143,7 @@
 >>>>> Searching for Dream with the Fishes (1997)
 [GEO] Locating 2 addresses
 [GEO] Searched for:   Pier 39
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  PIER 39, San Francisco, CA 94133, USA
 [GEO] Searched for:   Bay Bridge
 [GEO] Found address:  Bayshore Blvd, San Francisco, CA, USA
 [STR] Storing result
@@ -1243,7 +1243,7 @@
 [GEO] Searched for:   90 Gold Street
 [GEO] Found address:  90 Gold St, San Francisco, CA 94133, USA
 [GEO] Searched for:   5th and Beale Streets
-[GEO] Found address:  Beale St, San Francisco, CA, USA
+[GEO] Found address:  Beale St, San Francisco, CA 94105, USA
 [STR] Storing result
 >>>>> Searching for Final Analysis (1992)
 [GEO] Locating 5 addresses
@@ -1482,7 +1482,7 @@
 [GEO] Searched for:   Pier 7 (The Embarcadero)
 [GEO] Found address:  Pier 7, San Francisco, CA, USA
 [GEO] Searched for:   Pier 1
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  Pier 1, California Ave, San Francisco, CA, USA
 [GEO] Searched for:   Embarcadero & Washington
 [GEO] Found address:  The Embarcadero & Washington St, San Francisco, CA 94111, USA
 [GEO] Searched for:   Mission & Beal
@@ -1521,7 +1521,7 @@
 [GEO] Searched for:   Sutter Street between Powell and Mason
 [GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   San Francisco International Airport
-[GEO] Found address:  SFO, 4 Dublin St, San Francisco, CA 94112, USA
+[GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   Mel's Drive-In (Corner South Van Ness & Mission St.)
 [GEO] Found address:  Mission St, San Francisco, CA, USA
 [GEO] Searched for:   634 Raycliff Terrace
@@ -1614,7 +1614,7 @@
 >>>>> Searching for Homeward Bound II: Lost in San Francisco (1996)
 [GEO] Locating 1 addresses
 [GEO] Searched for:   Pier 39 (Fisherman's Wharf)
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  PIER 39, San Francisco, CA 94133, USA
 [STR] Storing result
 >>>>> Searching for How Stella Got Her Groove Back (1998)
 [GEO] Locating 1 addresses
@@ -1669,7 +1669,7 @@
 >>>>> Searching for Invasion of the Body Snatchers (1978)
 [GEO] Locating 16 addresses
 [GEO] Searched for:   Pier 33 (Embarcadero)
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  Pier 33, The Embarcadero, San Francisco, CA 94133, USA
 [GEO] Searched for:   Department of Public Health (101 Grove Street at Polk, Civic Center)
 [GEO] Found address:  Civic Center, San Francisco, CA 94102, USA
 [GEO] Searched for:   United Nations Plaza (Civic Center)
@@ -1983,7 +1983,7 @@
 [GEO] Searched for:   Vermont Street between 20th and 22nd Streets
 [GEO] Found address:  22nd Ave, San Francisco, CA, USA
 [GEO] Searched for:   San Francisco International Airport
-[GEO] Found address:  SFO, 4 Dublin St, San Francisco, CA 94112, USA
+[GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   San Francisco Drydock (20th and Illinois Streets)
 [GEO] Found address:  Illinois St, San Francisco, CA, USA
 [GEO] Searched for:   Pacific Heights Towers (2200 Sacramento Street, Pacific Heights)
@@ -2147,7 +2147,7 @@
 [GEO] Searched for:   Pierce Street between Pacific & Green Streets
 [GEO] Found address:  Green St, San Francisco, CA, USA
 [GEO] Searched for:   Montgomery & Vallejo Streets
-[GEO] Found address:  Montgomery St & Vallejo Street Stairs, San Francisco, CA 94133, USA
+[GEO] Found address:  Vallejo St & Montgomery St, San Francisco, CA 94133, USA
 [GEO] Searched for:   Marathon Plaza (303 2nd Street)
 [GEO] Found address:  303 2nd St, San Francisco, CA 94107, USA
 [GEO] Searched for:   Jones Street at Bush
@@ -2240,7 +2240,7 @@
 [GEO] Searched for:   Fairmont Hotel (950 Mason Street, Nob Hill)
 [GEO] Found address:  950 Mason St, San Francisco, CA 94108, USA
 [GEO] Searched for:   Pier 43 1/2
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  Pier 43 1/2, 43 1/2 Fishermans Wharf, San Francisco, CA 94133, USA
 [GEO] Searched for:   Cala Foods (California Street and Hyde)
 [GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   307 Filbert Street
@@ -2407,7 +2407,7 @@
 [GEO] Searched for:   Battery Spencer
 [GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   Pier 43
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  Pier 43 1/2, 43 1/2 Fishermans Wharf, San Francisco, CA 94133, USA
 [GEO] Searched for:   Vallejo St. Garage, 766 Vallejo St.
 [GEO] Found address:  766 Vallejo St, San Francisco, CA 94133, USA
 [GEO] Searched for:   Fort Baker
@@ -2892,7 +2892,7 @@
 >>>>> Searching for The Competition (1980)
 [GEO] Locating 2 addresses
 [GEO] Searched for:   Pier 39
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  PIER 39, San Francisco, CA 94133, USA
 [GEO] Searched for:   California Academy of Sciences (Golden Gate Park)
 [GEO] Found address:  Concourse Dr/Academy of Sciences, San Francisco, CA 94118, USA
 [STR] Storing result
@@ -3112,7 +3112,7 @@
 [GEO] Searched for:   Epic Roasthouse
 [GEO] Found address:  San Francisco, CA, USA
 [GEO] Searched for:   Players Arcade at Pier 39
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  PIER 39, San Francisco, CA 94133, USA
 [STR] Storing result
 >>>>> Searching for The Jazz Singer (1927)
 [GEO] Locating 1 addresses
@@ -3256,7 +3256,7 @@
 [GEO] Searched for:   Presidio (Golden Gate National Recreation Area)
 [GEO] Found address:  Golden Gate National Recreation Area, 1240 Appleton St, San Francisco, CA 94129, USA
 [GEO] Searched for:   Montgomery & Vallejo Streets (Telegraph Hill)
-[GEO] Found address:  Montgomery St & Vallejo Street Stairs, San Francisco, CA 94133, USA
+[GEO] Found address:  Vallejo St & Montgomery St, San Francisco, CA 94133, USA
 [GEO] Searched for:   Market & 2nd Streets
 [GEO] Found address:  Market St & 2nd St, San Francisco, CA 94104, USA
 [GEO] Searched for:   Hayes & Polk Streets (Civic Center)
@@ -3414,7 +3414,7 @@
 [GEO] Searched for:   Piers 30-32
 [GEO] Found address:  32 Pier, San Francisco, CA 94105, USA
 [GEO] Searched for:   Pier 39
-[GEO] Found address:  San Mateo County, CA, USA
+[GEO] Found address:  PIER 39, San Francisco, CA 94133, USA
 [GEO] Searched for:   Pier 24
 [GEO] Found address:  24 Pier, San Francisco, CA 94105, USA
 [GEO] Searched for:   Mojito (1337-1339 Grant Avenue)

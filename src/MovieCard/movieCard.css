@@ -6,8 +6,6 @@
 }
 .movie-card__content {
 	position: relative;
-	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-	font-weight: 300;
 }
 .movie-card__title-text,
 .movie-card__subtitle-text {

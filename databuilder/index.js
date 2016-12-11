@@ -1,4 +1,4 @@
-'use strict';
+
 const secretKeys = require('../secrets.json');
 
 const fs = require('fs');
@@ -24,7 +24,7 @@ const origData = require('./resources/sfgov/sfmovies.json').data;
 /**
  * Delay between calls to TMDb
  */
-const THROTTLE_DELAY = 500;
+const THROTTLE_DELAY = 400;
 /**
  * Number of concurrent calls to TMDb
  */
@@ -423,19 +423,21 @@ function storeMovieResult(data) {
 		delete movie.movie.actors;
 		storage.finalMovieData.push({
 			movie: Object.assign({}, movie.movie, {
-				originalTitle: mResult.original_title,
-				overview: mResult.overview,
-				language: mResult.original_language,
+				tmdbId: mResult.id,
+
+				title: mResult.original_title,
+				// overview: mResult.overview,
+				// language: mResult.original_language,
 				genres: mResult.genre_ids,
 
 				posterPath: mResult.poster_path,
-				backdropPath: mResult.backgrop_path,
+				// backdropPath: mResult.backgrop_path,
 
-				popularity: mResult.popularity,
+				// popularity: mResult.popularity,
 				voteAverage: mResult.vote_average,
 				voteCount: mResult.vote_count
 			}),
-			location: movie.location
+			locations: movie.location
 		});
 		return resolve('Stored result');
 	});
@@ -456,7 +458,7 @@ function catchNoResult(data) {
 		});
 		storage.finalMovieData.push({
 			movie: movie.movie,
-			location: movie.location
+			locations: movie.location
 		});
 		return resolve('No search results found, movie still added'); // Final `resolve`
 	});

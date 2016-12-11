@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import './movieCard.css';
 
-const getStarRating = function(rating) {
-	const fiveStarRating = rating.toFixed() / 2;
+export const getStarRating = function(rating) {
+	const fiveStarRating = (rating || 0).toFixed() / 2;
 	let ratingIcons = [];
 	for (let i = 0; i < fiveStarRating - 1; ++i) {
 		ratingIcons.push(<i key={i} className="material-icons">star</i>);
@@ -37,9 +37,9 @@ const MovieCard = ({mData, onClick, genres}) => (
 			<div className="movie-card__title">
 				<h2
 					className="movie-card__title-text"
-					title={mData.movie.originalTitle}
+					title={mData.movie.title}
 				>
-					{mData.movie.originalTitle}
+					{mData.movie.title}
 				</h2>
 				<div className="movie-card__subtitle-text">
 					{mData.movie.genres.map(function(genre) {
@@ -69,9 +69,8 @@ const MovieCard = ({mData, onClick, genres}) => (
 
 export const MoviePropType = PropTypes.shape({
 	id: PropTypes.string.isRequired,
-	originalTitle: PropTypes.string.isRequired,
-	year: PropTypes.string.isRequired, //should be number
-	tmdbId: PropTypes.string,
+	year: PropTypes.string.isRequired,
+	tmdbId: PropTypes.number,
 	title: PropTypes.string,
 	overview: PropTypes.string,
 	language: PropTypes.string,

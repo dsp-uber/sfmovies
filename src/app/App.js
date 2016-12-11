@@ -5,12 +5,12 @@ import * as moviesActions from '../ducks/movies';
 class App extends Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
-		dispatch(moviesActions.loadGenres());
-		dispatch(moviesActions.loadMovies());
+		dispatch(moviesActions.fetchGenres());
+		dispatch(moviesActions.fetchAllMovies());
 	}
 	render() {
 		return (
-			<div className="mdl-layout mdl-js-layout">
+			<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 				{this.props.children}
 			</div>
 		);

@@ -6,30 +6,71 @@ import secretKeys from '../../secrets.json';
 const MovieDB = MovieDBClient(secretKeys.tmdb);
 
 // Actions
-const SHOW_MOVIE = 'sfmovies/movies/SHOW_MOVIE';
-const SHOW_MOVIES = 'sfmovies/movies/SHOW_MOVIES';
-const STORE_GENRES = 'sfmovies/movies/STORE_GENRES';
+const SET_ACTIVE_MOVIE = 'sfmovies/movies/SET_ACTIVE_MOVIE';
+const SET_ALL_MOVIES = 'sfmovies/movies/SET_ALL_MOVIES';
+const SET_VISIBLE_MOVIES = 'sfmovies/movies/SET_VISIBLE_MOVIES';
+const SET_GENRES = 'sfmovies/movies/SET_GENRES';
+
+const SET_SEARCH_QUERY = 'sfmovies/movies/SET_SEARCH_QUERY';
+
+const SET_SHOW_TRAILER = 'sfmovies/ui/SET_SHOW_TRAILER';
+const SET_MAP_CENTER = 'sfmovies/map/SET_MAP_CENTER';
+const SET_MAP_ZOOM = 'sfmovies/map/SET_MAP_ZOOM';
 
 const MOVIES_INIT = {
-	movies: [],
+	allMovies: [],
+	visibleMovies: [],
 	genres: {},
-	activeMovie: {}
+	activeMovie: {},
+
+	searchQuery: '',
+
+	showTrailer: false,
+
+	mapCenter: {
+		lat: 0,
+		lng: 0
+	},
+	mapZoom: 13
 };
 
 // Reducer
 export default function reducer(state = MOVIES_INIT, action = {}) {
 	switch (action.type) {
-		case SHOW_MOVIE:
+		case SET_ACTIVE_MOVIE:
 			return Object.assign({}, state, {
 				activeMovie: action.movie
 			});
-		case SHOW_MOVIES:
+		case SET_ALL_MOVIES:
 			return Object.assign({}, state, {
-				movies: action.movies
+				allMovies: action.allMovies
 			});
-		case STORE_GENRES:
+		case SET_VISIBLE_MOVIES:
+			return Object.assign({}, state, {
+				visibleMovies: action.visibleMovies
+			});
+		case SET_GENRES:
 			return Object.assign({}, state, {
 				genres: action.genres
+			});
+
+		case SET_SHOW_TRAILER:
+			return Object.assign({}, state, {
+				showTrailer: action.showTrailer
+			});
+
+		case SET_SEARCH_QUERY:
+			return Object.assign({}, state, {
+				searchQuery: action.searchQuery
+			});
+
+		case SET_MAP_CENTER:
+			return Object.assign({}, state, {
+				mapCenter: action.mapCenter
+			});
+		case SET_MAP_ZOOM:
+			return Object.assign({}, state, {
+				mapZoom: action.mapZoom
 			});
 		default:
 			return state;
@@ -38,122 +79,242 @@ export default function reducer(state = MOVIES_INIT, action = {}) {
 
 // Action Creators
 
-export function showMovie(movie) {
+export function setActiveMovie(movie) {
 	return {
-		type: SHOW_MOVIE,
+		type: SET_ACTIVE_MOVIE,
 		movie
 	};
 }
-export function showMovies(movies) {
+export function setAllMovies(allMovies) {
 	return {
-		type: SHOW_MOVIES,
-		movies
+		type: SET_ALL_MOVIES,
+		allMovies
 	};
 }
-export function storeGenres(genres) {
+export function setVisibleMovies(visibleMovies) {
 	return {
-		type: STORE_GENRES,
+		type: SET_VISIBLE_MOVIES,
+		visibleMovies
+	};
+}
+export function setGenres(genres) {
+	return {
+		type: SET_GENRES,
 		genres
 	};
 }
-export function openMovies() {
+export function setShowTrailer(showTrailer) {
+	return {
+		type: SET_SHOW_TRAILER,
+		showTrailer
+	};
+}
+export function setSearchQuery(searchQuery) {
+	return {
+		type: SET_SEARCH_QUERY,
+		searchQuery
+	};
+}
+export function setMapCenter(mapCenter) {
+	return {
+		type: SET_MAP_CENTER,
+		mapCenter
+	};
+}
+export function setMapZoom(mapZoom) {
+	return {
+		type: SET_MAP_ZOOM,
+		mapZoom
+	};
+}
+export function navToMovieList() {
 	return (dispatch, getState) => {
 		history.push({
 			search: '/'
 		});
 	};
 }
-export function loadMovies() {
+export function fetchAllMovies() {
 	return (dispatch, getState) => {
-		dispatch(uiActions.setLoading(true));
-		request(
-			window.location.protocol +
-			'//' +
-			window.location.host +
-			process.env.PUBLIC_URL +
-			'/static/movies.json',
-			(err, res, body) => {
-				if (!err && res.statusCode === 200) {
-					let movies = [];
-					try {
-						movies = JSON.parse(body);
-					} catch (e) {
-						console.error('Failure while loading movies.', e);
-					}
-					dispatch(uiActions.setLoading(false));
-					dispatch(showMovies(movies))
-				}
-			}
-		);
-	};
-}
-export function loadGenres() {
-	return (dispatch, getState) => {
-		dispatch(uiActions.setLoading(true));
-		request(
-			window.location.protocol +
-			'//' +
-			window.location.host +
-			process.env.PUBLIC_URL +
-			'/static/genres.json',
-			(err, res, body) => {
-				if (!err && res.statusCode === 200) {
-					let genres = [];
-					try {
-						genres = JSON.parse(body);
-					} catch (e) {
-						console.error('Failure while loading genres.', e);
-					}
-					dispatch(uiActions.setLoading(false));
-					dispatch(storeGenres(genres))
-				}
-			}
-		);
-	};
-}
-export function loadMovie(movie) {
-	return (dispatch, getState) => {
-		dispatch(uiActions.setLoading(true));
-		dispatch(showMovie(Object.assign({}, movie)));
-		if (movie.tmdbId) {
-			MovieDB.movieInfo({id: movie.tmdbId}, (err, res) => {
-				if (res) {
-					// merge movie objects in redux
-					dispatch(showMovie(Object.assign({},
-						getState().currentMovie,
-						res
-					)));
-				}
-			});
+		if (getState().movies.allMovies.length) {
+			Promise.resolve();
 		}
+
+		return new Promise((resolve, reject) => {
+			dispatch(uiActions.setLoading(true));
+
+			request(
+				window.location.protocol +
+				'//' +
+				window.location.host +
+				process.env.PUBLIC_URL +
+				'/static/movies.json',
+				(err, res, body) => {
+					if (!err && res.statusCode === 200) {
+						let movies = [];
+						try {
+							movies = JSON.parse(body);
+						} catch (e) {
+							throw new Error('Failure while loading movies.', e);
+						}
+
+						dispatch(uiActions.setLoading(false));
+						dispatch(setAllMovies(movies));
+						return resolve(dispatch(setVisibleMovies(movies)));
+					}
+				}
+			);
+		});
+	};
+}
+export function fetchAllMoviesAndShowMovieList() {
+	return (dispatch, getState) => {
+		return dispatch(fetchAllMovies()).then(() => navToMovieList());
+	};
+}
+
+export function fetchGenres() {
+	return (dispatch, getState) => {
+		if (getState().movies.genres.length) {
+			return Promise.resolve();
+		}
+
+		return new Promise((resolve, reject) => {
+			dispatch(uiActions.setLoading(true));
+			request(
+				window.location.protocol +
+				'//' +
+				window.location.host +
+				process.env.PUBLIC_URL +
+				'/static/genres.json',
+				(err, res, body) => {
+					if (!err && res.statusCode === 200) {
+						let genres = [];
+						try {
+							genres = JSON.parse(body);
+						} catch (e) {
+							throw new Error('Failure while loading genres.', e);
+						}
+						dispatch(uiActions.setLoading(false));
+						return resolve(dispatch(setGenres(genres)));
+
+					}
+				}
+			);
+		});
+	};
+}
+export function fetchMovieFromTMDbAndSetActive(movie) {
+	return (dispatch, getState) => {
+		return new Promise((resolve, reject) => {
+			dispatch(uiActions.setLoading(true));
+
+			if (movie.movie.tmdbId) {
+				let enrichedMovie = {
+					movie: Object.assign({}, movie.movie),
+					locations: Object.assign({}, movie.locations)
+				};
+				MovieDB.movieInfo({id: movie.movie.tmdbId}, (err, res) => {
+					if (res) {
+						// merge movie objects in redux
+						enrichedMovie = Object.assign({}, {
+							movie: Object.assign({},
+								movie.movie,
+								{
+									imdbId: res.imdbId,
+									overview: res.overview,
+									releaseDate: res.release_date,
+									budget: res.budget,
+									revenue: res.revenue,
+									runtime: res.runtime,
+									tagline: res.tagline,
+									backdropPath: res.backdrop_path
+								}
+							),
+							locations: movie.locations
+						});
+					} else {
+						return resolve(movie);
+					}
+				}).movieVideos({id: movie.movie.tmdbId}, (err, res) => {
+					if (res && res.results.length) {
+						var youtubeVideos = res.results.filter(function(obj) {
+							return (obj.site.toLowerCase() === 'youtube');
+						});
+						if (youtubeVideos.length) {
+							enrichedMovie = Object.assign({}, {
+								movie: Object.assign({},
+									enrichedMovie.movie,
+									{
+										youtubeTrailerId: youtubeVideos[0].key
+									}
+								),
+								locations: movie.locations
+							});
+						}
+					}
+					return resolve(enrichedMovie);
+				});
+			} else {
+				return resolve(movie);
+			}
+		}).then((movie) => dispatch(showMovieOnMap(movie)));
 	};
 }
 export function loadMovieById(id) {
 	return (dispatch, getState) => {
-		dispatch(uiActions.setLoading(true));
-		const movies = Object.assign({},
-			getState().movies
-		);
-		let activeMovie = {};
-		Object.keys(movies).some((key) => {
-			let movie = movies[key];
-			if (movie.movie.id === id) {
-				activeMovie = movie;
-				return true;
-			}
-			return false;
+		return new Promise((resolve, reject) => {
+			dispatch(uiActions.setLoading(true));
+
+			dispatch(fetchGenres()).then(() =>
+				dispatch(fetchAllMovies())
+			).then(() => {
+				const movies = Object.assign({},
+					getState().movies.allMovies
+				);
+				let activeMovie = {};
+				Object.keys(movies).some((key) => {
+					let movie = movies[key];
+					if (movie.movie.id === id) {
+						activeMovie = movie;
+						return true;
+					}
+					return false;
+				});
+				if (activeMovie) {
+					return resolve(dispatch(fetchMovieFromTMDbAndSetActive(activeMovie)));
+				} else {
+					return resolve(dispatch(navToMovieList()));
+				}
+			});
 		});
-		if (activeMovie) {
-			dispatch(loadMovie(activeMovie));
-		} else {
-			dispatch(openMovies());
-		}
 	};
 }
-export function openMovie(movie) {
+export function showMovieOnMap(movie) {
 	return (dispatch, getState) => {
-		history.push({
-			search: 'map/' + movie.movie.id
-		});
+		dispatch(setActiveMovie(movie));
+		return dispatch(navToMovieMap(movie.movie.id));
 	};
+}
+export function navToMovieMap(movieId) {
+	return (dispatch, getState) => {
+		const newPath = 'map/' + movieId;
+		const currentLocation = history.getCurrentLocation();
+		if (currentLocation.pathname.indexOf('/' + newPath) === -1) {
+			history.push({
+				search: newPath
+			});
+		}
+		return Promise.resolve();
+	};
+}
+export function filterMovies(query) {
+	return (dispatch, getState) => {
+		dispatch(setSearchQuery(query));
+		const allMovies = getState().movies.allMovies;
+		const visibleMovies = allMovies.filter((movie) => {
+			return (movie.movie.title.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+		});
+		return dispatch(setVisibleMovies(visibleMovies));
+	}
 }

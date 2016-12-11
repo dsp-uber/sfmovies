@@ -11,6 +11,8 @@ import MovieListContainer from './MovieList/MovieListContainer';
 import MovieMapContainer from './MovieMap/MovieMapContainer';
 import About from './app/About.js';
 
+import './index.css';
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
