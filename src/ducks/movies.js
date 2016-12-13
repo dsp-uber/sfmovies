@@ -13,9 +13,7 @@ const SET_GENRES = 'sfmovies/movies/SET_GENRES';
 
 const SET_SEARCH_QUERY = 'sfmovies/movies/SET_SEARCH_QUERY';
 
-const SET_SHOW_TRAILER = 'sfmovies/ui/SET_SHOW_TRAILER';
-const SET_MAP_CENTER = 'sfmovies/map/SET_MAP_CENTER';
-const SET_MAP_ZOOM = 'sfmovies/map/SET_MAP_ZOOM';
+const SET_SHOW_TRAILER = 'sfmovies/movies/SET_SHOW_TRAILER';
 
 const MOVIES_INIT = {
 	allMovies: [],
@@ -25,13 +23,7 @@ const MOVIES_INIT = {
 
 	searchQuery: '',
 
-	showTrailer: false,
-
-	mapCenter: {
-		lat: 0,
-		lng: 0
-	},
-	mapZoom: 13
+	showTrailer: false
 };
 
 // Reducer
@@ -63,22 +55,12 @@ export default function reducer(state = MOVIES_INIT, action = {}) {
 			return Object.assign({}, state, {
 				searchQuery: action.searchQuery
 			});
-
-		case SET_MAP_CENTER:
-			return Object.assign({}, state, {
-				mapCenter: action.mapCenter
-			});
-		case SET_MAP_ZOOM:
-			return Object.assign({}, state, {
-				mapZoom: action.mapZoom
-			});
 		default:
 			return state;
 	}
 }
 
 // Action Creators
-
 export function setActiveMovie(movie) {
 	return {
 		type: SET_ACTIVE_MOVIE,
@@ -115,18 +97,7 @@ export function setSearchQuery(searchQuery) {
 		searchQuery
 	};
 }
-export function setMapCenter(mapCenter) {
-	return {
-		type: SET_MAP_CENTER,
-		mapCenter
-	};
-}
-export function setMapZoom(mapZoom) {
-	return {
-		type: SET_MAP_ZOOM,
-		mapZoom
-	};
-}
+
 export function navToMovieList() {
 	return (dispatch, getState) => {
 		history.push({

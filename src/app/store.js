@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 
 import ui from '../ducks/ui';
 import movies from '../ducks/movies';
+import map from '../ducks/map';
 
 const reducer = combineReducers(Object.assign({}, {
 		ui,
-		movies
+		movies,
+		map
 	}, {
 		routing: routerReducer
 	})

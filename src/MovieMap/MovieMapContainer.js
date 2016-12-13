@@ -1,20 +1,14 @@
 import { connect } from 'react-redux';
-import {
-	setMapCenter,
-	setMapZoom,
-	setShowTrailer,
-	loadMovieById,
-	navToMovieList
-} from '../ducks/movies';
+import { setShowTrailer, loadMovieById, navToMovieList } from '../ducks/movies';
+import { setMapCenter, setMapZoom } from '../ducks/map';
 import MovieMap from './MovieMap';
 
 const mapStateToProps = (state) => {
 	return {
 		movie: state.movies.activeMovie.movie,
 		locations: state.movies.activeMovie.locations,
-		genres: state.movies.genres,
-		mapCenter: state.movies.mapCenter,
-		mapZoom: state.movies.mapZoom,
+		mapCenter: state.map.mapCenter,
+		mapZoom: state.map.mapZoom,
 		showTrailer: state.movies.showTrailer
 	};
 };
@@ -28,9 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 				lat: location.lat,
 				lng: location.lon || location.lng
 			}));
-		},
-		onTrailerClick: () => {
-			return dispatch(setShowTrailer(true));
 		},
 		onOverlayClick: () => {
 			return dispatch(setShowTrailer(false));
