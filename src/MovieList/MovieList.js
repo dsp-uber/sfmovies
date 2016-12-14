@@ -9,13 +9,20 @@ const MovieList = ({movies, onMovieClick, onSearch}) => (
 					<span className="mdl-layout-title">SFMovies</span>
 					<div className="mdl-layout-spacer"></div>
 					<div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-						<label className="mdl-button mdl-js-button mdl-button--icon" htmlFor="waterfall-exp">
+						<label
+							className="mdl-button mdl-js-button mdl-button--icon"
+							htmlFor="movie-list-search-input"
+						>
 							<i className="material-icons">search</i>
 						</label>
 						<div className="mdl-textfield__expandable-holder">
 							<input
 								onChange={(e) => (onSearch(e.target.value))}
-								className="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" />
+								className="mdl-textfield__input"
+								type="text"
+								name="sample"
+								id="movie-list-search-input"
+							/>
 						</div>
 					</div>
 				</div>

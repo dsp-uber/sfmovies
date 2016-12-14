@@ -23,7 +23,7 @@ const PlaceHolderMovieCard = () => (
 	/>
 );
 
-const MovieCard = ({mData, onClick}) => (
+export const MovieCard = ({mData, onClick}) => (
 	<div onClick={onClick} className="movie-card mdl-card mdl-shadow--2dp">
 		<div
 			className="movie-card__poster mdl-card__media"
