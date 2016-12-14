@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as moviesActions from '../ducks/movies';
+import Loading from './Loading';
 
 class App extends Component {
 	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(moviesActions.fetchGenres());
-		dispatch(moviesActions.fetchAllMovies());
+		this.props.onLoad();
 	}
-	render() {
-		return (
-			<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-				{this.props.children}
-			</div>
-		);
-	}
+	render = () => (
+		<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+			{this.props.children}
+			<Loading show={this.props.isLoading} />
+		</div>
+	)
 }
 
-export default connect()(App);
+export default App;

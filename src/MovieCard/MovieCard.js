@@ -6,27 +6,29 @@ import MoviePropType from '../Movie/MoviePropType';
 import './movieCard.css';
 
 const MovieCard = ({mData, onClick, genres}) => (
-	<div
-		onClick={onClick}
-		className="movie-card mdl-card mdl-shadow--2dp"
-	>
+	<div onClick={onClick} className="movie-card mdl-card mdl-shadow--2dp">
 		<div
-			className="movie-card__media mdl-card__media"
+			className="movie-card__poster mdl-card__media"
 			style={{
-				backgroundImage: 'url(' + getAbsImgPath(mData.movie.posterPath) + ')'
+				backgroundImage:
+					`url(${getAbsImgPath(mData.movie.posterPath)}),
+					url(${process.env.PUBLIC_URL}/static/img/no-poster.png)`
 			}}
 		>
 		</div>
-		<div className="movie-card__nomedia"></div>
-		<div className="movie-card__content">
-			<div className="movie-card__title">
-				<h2 className="movie-card__title-text" title={mData.movie.title}>
+		<div className="movie-card-content">
+			<div className="movie-card-content-title">
+				<h2
+					className="movie-card-content-title__text"
+					title={mData.movie.title}
+				>
 					{mData.movie.title}
 				</h2>
-				<div className="movie-card__subtitle-text">
+				<div className="movie-card-content-title__subtitle">
 					<MovieGenresContainer movieGenres={mData.movie.genres} />
 				</div>
 			</div>
+
 			<MovieRating
 				voteAverage={mData.movie.voteAverage}
 				voteCount={mData.movie.voteCount}

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from './app/store';
 import { history } from './app/store';
 
-import App from './app/App';
+import AppContainer from './app/AppContainer';
 import MovieListContainer from './MovieList/MovieListContainer';
 import MovieMapContainer from './MovieMap/MovieMapContainer';
 import About from './app/About.js';
@@ -18,7 +18,7 @@ import './index.css';
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
-			<Route path="/" component={App}>
+			<Route path="/" component={AppContainer}>
 				<IndexRoute component={MovieListContainer} />
 
 				<Route path="/map/:id" component={MovieMapContainer} />

@@ -30,31 +30,37 @@ const MOVIES_INIT = {
 export default function reducer(state = MOVIES_INIT, action = {}) {
 	switch (action.type) {
 		case SET_ACTIVE_MOVIE:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				activeMovie: action.movie
-			});
+			};
 		case SET_ALL_MOVIES:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				allMovies: action.allMovies
-			});
+			};
 		case SET_VISIBLE_MOVIES:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				visibleMovies: action.visibleMovies
-			});
+			};
 		case SET_GENRES:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				genres: action.genres
-			});
+			};
 
 		case SET_SHOW_TRAILER:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				showTrailer: action.showTrailer
-			});
+			};
 
 		case SET_SEARCH_QUERY:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				searchQuery: action.searchQuery
-			});
+			};
 		default:
 			return state;
 	}
@@ -112,7 +118,7 @@ export function fetchAllMovies() {
 		}
 
 		return new Promise((resolve, reject) => {
-			dispatch(uiActions.setLoading(true));
+			dispatch(uiActions.retain());
 
 			request(
 				window.location.protocol +
@@ -126,10 +132,11 @@ export function fetchAllMovies() {
 						try {
 							movies = JSON.parse(body);
 						} catch (e) {
+							dispatch(uiActions.release());
 							throw new Error('Failure while loading movies.', e);
 						}
 
-						dispatch(uiActions.setLoading(false));
+						dispatch(uiActions.release());
 						dispatch(setAllMovies(movies));
 						return resolve(dispatch(setVisibleMovies(movies)));
 					}
@@ -139,9 +146,9 @@ export function fetchAllMovies() {
 	};
 }
 export function fetchAllMoviesAndShowMovieList() {
-	return (dispatch, getState) => {
-		return dispatch(fetchAllMovies()).then(() => navToMovieList());
-	};
+	return (dispatch, getState) => (
+		dispatch(fetchAllMovies()).then(() => navToMovieList())
+	);
 }
 
 export function fetchGenres() {
@@ -151,7 +158,7 @@ export function fetchGenres() {
 		}
 
 		return new Promise((resolve, reject) => {
-			dispatch(uiActions.setLoading(true));
+			dispatch(uiActions.retain());
 			request(
 				window.location.protocol +
 				'//' +
@@ -164,11 +171,14 @@ export function fetchGenres() {
 						try {
 							genres = JSON.parse(body);
 						} catch (e) {
+							dispatch(uiActions.release());
 							throw new Error('Failure while loading genres.', e);
 						}
-						dispatch(uiActions.setLoading(false));
+						dispatch(uiActions.release());
 						return resolve(dispatch(setGenres(genres)));
-
+					} else {
+						dispatch(uiActions.release());
+						throw new Error('Failure while fetching genres.', err);
 					}
 				}
 			);
@@ -176,22 +186,22 @@ export function fetchGenres() {
 	};
 }
 export function fetchMovieFromTMDbAndSetActive(movie) {
-	return (dispatch, getState) => {
-		return new Promise((resolve, reject) => {
-			dispatch(uiActions.setLoading(true));
-
+	return (dispatch, getState) => (
+		new Promise((resolve, reject) => {
 			if (movie.movie.tmdbId) {
-				let enrichedMovie = {
-					movie: Object.assign({}, movie.movie),
-					locations: Object.assign({}, movie.locations)
-				};
-				MovieDB.movieInfo({id: movie.movie.tmdbId}, (err, res) => {
-					if (res) {
-						// merge movie objects in redux
-						enrichedMovie = Object.assign({}, {
-							movie: Object.assign({},
-								movie.movie,
-								{
+				new Promise((infoResolve, infoRreject) => {
+					dispatch(uiActions.retain());
+					let enrichedMovie = {
+						movie: {
+							...movie.movie
+						},
+						locations: [...movie.locations]
+					};
+					MovieDB.movieInfo({id: movie.movie.tmdbId}, (err, res) => {
+						if (res) {
+							enrichedMovie = {
+								movie: {
+									...movie.movie,
 									imdbId: res.imdbId,
 									overview: res.overview,
 									releaseDate: res.release_date,
@@ -200,42 +210,49 @@ export function fetchMovieFromTMDbAndSetActive(movie) {
 									runtime: res.runtime,
 									tagline: res.tagline,
 									backdropPath: res.backdrop_path
-								}
-							),
-							locations: movie.locations
-						});
-					} else {
-						return resolve(movie);
-					}
-				}).movieVideos({id: movie.movie.tmdbId}, (err, res) => {
-					if (res && res.results.length) {
-						var youtubeVideos = res.results.filter(function(obj) {
-							return (obj.site.toLowerCase() === 'youtube');
-						});
-						if (youtubeVideos.length) {
-							enrichedMovie = Object.assign({}, {
-								movie: Object.assign({},
-									enrichedMovie.movie,
-									{
-										youtubeTrailerId: youtubeVideos[0].key
-									}
-								),
-								locations: movie.locations
-							});
+								},
+								locations: [...movie.locations]
+							};
+							dispatch(uiActions.release());
+							return infoResolve(enrichedMovie);
+						} else {
+							dispatch(uiActions.release());
+							return infoResolve(movie);
 						}
-					}
-					return resolve(enrichedMovie);
+					});
+				}).then((enrichedMovie) => {
+					dispatch(uiActions.retain());
+					MovieDB.movieVideos({id: movie.movie.tmdbId}, (err, res) => {
+						if (res && res.results.length) {
+							const youtubeVideos = res.results.filter(function(obj) {
+								return (obj.site.toLowerCase() === 'youtube');
+							});
+							if (youtubeVideos.length) {
+								enrichedMovie = {
+									movie: {
+										...enrichedMovie.movie,
+										youtubeTrailerId: youtubeVideos[0].key
+									},
+									locations: [...movie.locations]
+								};
+							}
+						}
+						dispatch(uiActions.release());
+						return resolve(enrichedMovie);
+					});
 				});
 			} else {
 				return resolve(movie);
 			}
-		}).then((movie) => dispatch(showMovieOnMap(movie)));
-	};
+		}).then((movie) => {
+			return dispatch(showMovieOnMap(movie));
+		})
+	);
 }
 export function loadMovieById(id) {
 	return (dispatch, getState) => {
 		return new Promise((resolve, reject) => {
-			dispatch(uiActions.setLoading(true));
+			dispatch(uiActions.retain());
 
 			dispatch(fetchGenres()).then(() =>
 				dispatch(fetchAllMovies())
@@ -253,10 +270,15 @@ export function loadMovieById(id) {
 					return false;
 				});
 				if (activeMovie) {
+					dispatch(uiActions.release());
 					return resolve(dispatch(fetchMovieFromTMDbAndSetActive(activeMovie)));
 				} else {
+					dispatch(uiActions.release());
 					return resolve(dispatch(navToMovieList()));
 				}
+			}).catch((e) => {
+				dispatch(uiActions.release());
+				throw new Error('Error loading movie.', e);
 			});
 		});
 	};
@@ -282,10 +304,12 @@ export function navToMovieMap(movieId) {
 export function filterMovies(query) {
 	return (dispatch, getState) => {
 		dispatch(setSearchQuery(query));
+		dispatch(uiActions.retain());
 		const allMovies = getState().movies.allMovies;
 		const visibleMovies = allMovies.filter((movie) => {
 			return (movie.movie.title.toLowerCase().indexOf(query.toLowerCase()) !== -1);
 		});
+		dispatch(uiActions.release());
 		return dispatch(setVisibleMovies(visibleMovies));
 	}
 }

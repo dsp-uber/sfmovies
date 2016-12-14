@@ -1,49 +1,32 @@
 /* Movie Card Styles */
-.movie-card.mdl-card {
+.movie-card {
 	position: relative;
 	padding: 0;
 	margin: 0 auto 12px;
 }
-.movie-card__content {
+.movie-card-content {
 	position: relative;
 }
-.movie-card__title-text,
-.movie-card__subtitle-text {
+.movie-card-content-title__text,
+.movie-card-content-title__subtitle {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	line-height: 1.5;
 }
-.movie-card__title-text {
+.movie-card-content-title__text {
 	margin: 0;
 	padding: 16px 0 4px;
 	font-size: 16px;
 	letter-spacing: -0.8px;
 }
-.movie-card__subtitle-text {
+.movie-card-content-title__subtitle {
 	font-size: 14px;
 	font-weight: 300;
 	color: rgba(0, 0, 0, 0.5);
 }
-.movie-card__rating {
-	margin: 16px 0 0;
-	color: rgba(0, 0, 0, 0.3);
-}
-.movie-card__rating > i {
-	font-size: 16px;
-}
-.movie-card__rating-text {
-	position: relative;
-	display: inline-block;
-	padding-left: 4px;
-	bottom: 4px;
-	font-size: 12px;
-}
-.movie-card__media {
+.movie-card__poster {
 	z-index: 2;
-}
-.movie-card__media,
-.movie-card__nomedia {
 	position: relative;
 	line-height: 0;
 	margin: 0;
@@ -56,68 +39,55 @@
 	padding: 0;
 }
 
-.movie-card__nomedia {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	background-image: url(https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png);
-}
-
 /* Movie Card Styles for Mobile */
-@media (max-width: 535px) {
-	.movie-card.mdl-card {
+@media (max-width: 575px) {
+	.movie-card {
 		width: 100%;
 		height: auto;
 		position: relative;
+		margin: 8px 0;
+		box-shadow: none;
+		border-bottom: 1px solid rgba(0, 0, 0, .2);
 	}
-	.movie-card__media,
-	.movie-card__nomedia {
+	.movie-card__poster {
 		position: absolute;
-		left: 0;
+		left: 16px;
 		top: 0;
-		bottom: 0;
-		width: 34.94766%;
+		bottom: 16px;
+		width: 30%;
+		background-size: contain;
 	}
-	.movie-card__content {
+	.movie-card-content {
 		position: absolute;
 		right: 0;
 		top: 0;
 		bottom: 0;
-		width: 61.8%;
+		width: calc(70% - 32px);
 	}
-	.movie-card__actions {
-		position: absolute;
-		bottom: 0;
-	}
-	.movie-card__button {
-		float: right;
+	.movie-card-content-title {
+		padding-right: 16px;
 	}
 }
 
 /* Movie Card Styles for Tablet/Desktop */
-@media (min-width: 535px) {
-	.movie-card.mdl-card {
+@media (min-width: 576px) {
+	.movie-card {
 		width: 160px;
 		height: auto;
 	}
-	.movie-card__content {
+	.movie-card-content {
 		height: 120px;
 	}
-	.movie-card__title,
-	.movie-card__rating {
+	.movie-card-content-title,
+	.movie-rating {
 		padding-left: 16px;
 		padding-right: 16px;
 	}
-	.movie-card__title-text {
+	.movie-card-content-title__text {
 		width: 100%;
 	}
-	.movie-card__media,
-	.movie-card__nomedia {
+	.movie-card__poster {
 		width: 160px;
 		height: 240px;
-	}
-	.movie-card__actions {
-		display: none;
 	}
 }

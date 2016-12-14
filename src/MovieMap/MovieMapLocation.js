@@ -1,13 +1,20 @@
 import React, { PropTypes } from 'react';
+import './movieMapLocation.css';
 
-const MovieLocation = ({label}) => {
-	return (
-		<div className="movie-map__loc" title={label}>
-			<i className="movie-map__loc__icon-bg material-icons">place</i>
-			<i className="movie-map__loc__icon-fg material-icons">videocam</i>
-		</div>
-	);
-};
+const MovieLocation = ({label}) => (
+	<div className="movie-map-mark" title={label}>
+		<i
+			className="movie-map-mark__icon movie-map-mark__icon--bg material-icons"
+		>
+			place
+		</i>
+		<i
+			className="movie-map-mark__icon movie-map-mark__icon--fg material-icons"
+		>
+			videocam
+		</i>
+	</div>
+);
 
 MovieLocation.propTypes = {
 	label: PropTypes.string.isRequired

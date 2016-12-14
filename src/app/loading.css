@@ -1,0 +1,27 @@
+.loading-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0);
+	z-index: 200;
+	transition: background-color .2s ease-out;
+	pointer-events: none;
+}
+.loading-overlay.loading-overlay--show {
+	background: rgba(0, 0, 0, .9);
+	pointer-events: all;
+}
+.loading-overlay__spinner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -14px;
+	margin-top: -14px;
+	opacity: 0;
+	transition: opacity .2s ease-out;
+}
+.loading-overlay--show .loading-overlay__spinner {
+	opacity: 1;
+}

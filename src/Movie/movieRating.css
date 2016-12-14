@@ -1,0 +1,15 @@
+/* Movie Rating Block Styles */
+.movie-rating {
+	margin: 16px 0 0;
+	color: rgba(0, 0, 0, 0.3);
+}
+.movie-rating__star {
+	font-size: 16px;
+}
+.movie-rating__text {
+	position: relative;
+	display: inline-block;
+	padding-left: 4px;
+	bottom: 4px;
+	font-size: 12px;
+}

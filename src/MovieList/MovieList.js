@@ -4,7 +4,7 @@ import MovieCardContainer from '../MovieCard/MovieCardContainer';
 import './movieList.css';
 
 const MovieList = ({movies, onMovieClick, onSearch}) => (
-		<div className="movie-list__layout mdl-layout mdl-layout--fixed-header">
+		<div className="mdl-layout mdl-layout--fixed-header">
 			<header className="mdl-layout__header is-casting-shadow">
 				<div className="mdl-layout__header-row">
 					<span className="mdl-layout-title">SFMovies</span>
@@ -23,18 +23,16 @@ const MovieList = ({movies, onMovieClick, onSearch}) => (
 			</header>
 			<main className="mdl-layout__content">
 				<div className="movie-list mdl-grid">
-					{movies.map(function(mData) {
-						return (
-							<div
-								key={mData.movie.id}
-								className="mdl-cell movie-list-cell-special">
-								<MovieCardContainer
-									mData={mData}
-									onClick={() => onMovieClick(mData)}
-								/>
-							</div>
-						);
-					})}
+					{movies.map((mData) => (
+						<div
+							key={mData.movie.id}
+							className="movie-list__cell mdl-cell">
+							<MovieCardContainer
+								mData={mData}
+								onClick={() => onMovieClick(mData)}
+							/>
+						</div>
+					))}
 				</div>
 			</main>
 		</div>

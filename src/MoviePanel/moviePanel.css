@@ -1,0 +1,23 @@
+.movie-panel {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 480px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	opacity: 1;
+	transition: opacity .4s ease-out;
+	background: white;
+}
+.movie-panel__content {
+	position: relative;
+	top: 288px;
+	overflow-y: auto;
+	width: inherit;
+	height: calc(100% - 288px);
+}
+.movie-panel-infos {
+	padding: 16px;
+}

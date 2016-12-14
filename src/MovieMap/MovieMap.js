@@ -12,23 +12,19 @@ import './movieMap.css';
 
 class MovieMap extends Component {
 	componentDidMount() {
-		if (!this.props.params.id) {
+		if (!this.props.routeParams.id) {
 			this.props.navToMovieList();
 		} else if (!this.props.movie.id) {
 			this.props.fetchMovieById(this.props.routeParams.id).then(() => {
 				this.props.onLocationClick(this.getBounds().center, false);
-				this._triggerWindowResize();
 			});
 		} else {
 			this.props.onLocationClick(this.getBounds().center, false);
-			this._triggerWindowResize();
 		}
 	}
-	mapOptions() {
-		return {
-			styles: mapStyles
-		};
-	}
+	mapOptions = () => ({
+		styles: mapStyles
+	})
 	getBounds() {
 		let bounds = {
 			nw: {lat: 1000, lng: -1000},
@@ -56,25 +52,26 @@ class MovieMap extends Component {
 		return bounds;
 	}
 	render() {
+		if (this.props.isLoading || !this.props.movie.id) {
+			return null;
+		}
 		return (
 			<main
-				className={classNames('movie-map__layout mdl-layout__content', [
-					this.props.showTrailer ? 'show-trailer' : ''
+				className={classNames('movie-map-layout mdl-layout__content', [
+					this.props.showTrailer ? 'movie-map-layout--show-trailer' : null
 				])}
 			>
-				<div className="back-to-list">
-					<Link to="/">
-						<div className="mdl-layout__drawer-button">
-							<i className="material-icons">arrow_back</i>
-						</div>
-					</Link>
-				</div>
-				<div className="movie-map">
-					<div className="movie-map__grid">
+				<Link to="/">
+					<div className="mdl-layout__drawer-button">
+						<i className="material-icons">arrow_back</i>
+					</div>
+				</Link>
+				<div className="movie-map__content">
+					<div className="movie-map-maximizer">
 						<div onClick={this.props.onOverlayClick}>
-							<div className="movie-map__left">
+							<div className="movie-map-carto">
 								<GoogleMap
-									className="movie-map__gmap"
+									className="movie-map-carto__gmap"
 									options={this.mapOptions}
 									bootstrapURLKeys={{
 										key: secretKeys.gmap

@@ -1,0 +1,8 @@
+.movie-panel-locations__title {
+	border-top: 1px solid rgba(0, 0, 0, .1);
+	padding: 16px 16px 0;
+	margin-bottom: 0;
+}
+.movie-panel-locations__elem {
+	cursor: pointer;
+}

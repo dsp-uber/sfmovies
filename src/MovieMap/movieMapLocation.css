@@ -1,0 +1,19 @@
+.movie-map-location {
+	opacity: .9;
+	position: relative;
+	left: -18px;
+	top: -36px;
+}
+.movie-map-mark__icon {
+	position: absolute;
+}
+.movie-map-mark__icon.movie-map-mark__icon--bg {
+	font-size: 36px;
+	color: white;
+}
+.movie-map-mark__icon.movie-map-mark__icon--fg {
+	font-size: 16px;
+	color: #1d2c4d;
+	top: 5.5px;
+	left: 10.5px;
+}

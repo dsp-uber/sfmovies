@@ -6,8 +6,10 @@ import MovieGenresContainer from '../Movie/MovieGenresContainer';
 import MovieRating from '../Movie/MovieRating';
 import MoviePropType from '../Movie/MoviePropType';
 
+import './moviePanel.css';
+
 const MoviePanel = ({movie, genres}) => (
-	<div className="movie-map__right mdl-shadow--2dp">
+	<div className="movie-panel mdl-shadow--2dp">
 		<MoviePanelHeaderContainer />
 
 		<div className="movie-panel__content">
@@ -15,7 +17,7 @@ const MoviePanel = ({movie, genres}) => (
 				voteAverage={movie.voteAverage}
 				voteCount={movie.voteCount}
 			/>
-			<div className="movie-panel__infos">
+			<div className="movie-panel-infos">
 				<h6 className="mdl-typography--title">Overview</h6>
 				<div className="movie-panel__overview">
 					{movie.overview}

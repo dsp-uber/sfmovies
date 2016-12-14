@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 
 const MovieGenres = ({movieGenres, genres}) => (
 	<div>
-		{movieGenres.map(function(genre) {
-			return genres[genre];
-		}).join(', ')}
+		{movieGenres.map((genre) => (
+			genres[genre]
+		)).join(', ')}
 	</div>
 );
 

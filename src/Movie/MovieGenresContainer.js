@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import MovieGenres from './MovieGenres';
 
-const mapStateToProps = (state) => {
-	return {
-		genres: state.movies.genres
-	};
-};
+const mapStateToProps = (state) => ({
+	genres: state.movies.genres
+});
 
 const MovieGenresContainer = connect(
 	mapStateToProps
