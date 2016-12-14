@@ -37,6 +37,11 @@ const MovieRating = ({voteAverage, voteCount}) => (
 	</div>
 );
 
+MovieRating.defaultProps = {
+	voteAverage: 0,
+	voteCount: 0
+};
+
 MovieRating.propTypes = {
 	voteAverage: PropTypes.number,
 	voteCount: PropTypes.number
