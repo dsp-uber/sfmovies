@@ -11,12 +11,6 @@ before_install:
 script:
   - yarn test -- --coverage
 
-after_success:
-  # Deploy to GitHub Pages on a successful build for the master branch
-  - git config --global user.email "sampi+travisci@thelaundromatcafe.com"
-  - git config --global user.name "Travis CI"
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "Deploying master branch to gh-pages" && yarn deploy; fi
-
 cache:
   yarn: true
   directories:
