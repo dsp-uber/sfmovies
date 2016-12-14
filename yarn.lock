@@ -4486,6 +4486,10 @@ react-dom@^15.4.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-lazyload@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.2.0.tgz#a279bbe263855587b7f96e9fa948fcacdb62e695"
+
 react-number-format@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-1.0.1.tgz#bf14ba71fe6d8cbc63a9fc55b702c27f3b404225"

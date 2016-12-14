@@ -1,18 +1,38 @@
 import React, { PropTypes } from 'react';
+import LazyLoad from 'react-lazyload';
 import { getAbsImgPath } from '../app/utils';
 import MovieRating from '../Movie/MovieRating';
 import MovieGenresContainer from '../Movie/MovieGenresContainer';
 import MoviePropType from '../Movie/MoviePropType';
 import './movieCard.css';
 
-const MovieCard = ({mData, onClick, genres}) => (
+const PlaceHolderMovieCard = () => (
+	<MovieCard
+		mData={{
+			movie: {
+				id: '',
+				year: '',
+				title: '',
+				genres: [],
+				voteCount: 0,
+				voteAverage: 10
+			}
+		}}
+		onClick={() => {}}
+		genres={{}}
+	/>
+);
+
+const MovieCard = ({mData, onClick}) => (
 	<div onClick={onClick} className="movie-card mdl-card mdl-shadow--2dp">
 		<div
 			className="movie-card__poster mdl-card__media"
 			style={{
 				backgroundImage:
-					`url(${getAbsImgPath(mData.movie.posterPath)}),
-					url(${process.env.PUBLIC_URL}/static/img/no-poster.png)`
+					mData.movie.posterPath ?
+						`url(${getAbsImgPath(mData.movie.posterPath)}),
+						url(${process.env.PUBLIC_URL}/static/img/no-poster.png)` :
+						`url(${process.env.PUBLIC_URL}/static/img/no-poster.png)`
 			}}
 		>
 		</div>
@@ -37,6 +57,22 @@ const MovieCard = ({mData, onClick, genres}) => (
 	</div>
 );
 
+const LazyMovieCard = ({mData, onClick}) => (
+	<LazyLoad
+		height={360}
+		offset={180}
+		debounce={100}
+		overflow={true}
+		unmountIfInvisible={true}
+		placeholder={<PlaceHolderMovieCard />}
+	>
+		<MovieCard
+			mData={mData}
+			onClick={onClick}
+		/>
+	</LazyLoad>
+);
+
 MovieCard.propTypes = {
 	mData: PropTypes.shape({
 		movie: MoviePropType.isRequired
@@ -44,4 +80,4 @@ MovieCard.propTypes = {
 	onClick: PropTypes.func.isRequired
 };
 
-export default MovieCard;
+export default LazyMovieCard;
