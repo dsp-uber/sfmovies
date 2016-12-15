@@ -10,6 +10,7 @@ import mapStyles from './mapStyles.json';
 import secretKeys from '../../secrets.json';
 import './movieMap.css';
 
+// Calculate the bounds of the markers (only works on the NW hemisphere)
 export const getBounds = ({locations}) => {
 	let bounds = {
 		nw: {lat: 1000, lng: -1000},
@@ -38,6 +39,7 @@ export const getBounds = ({locations}) => {
 }
 
 class MovieMap extends Component {
+	// The movie data is loaded here if the user navigates straight from a URL
 	componentDidMount() {
 		if (!this.props.routeParams.id) {
 			this.props.navToMovieList();
@@ -49,11 +51,19 @@ class MovieMap extends Component {
 			this.props.setMapCenterAndZoom(this.getBounds().center, false);
 		}
 	}
+	// The map colors and styles are from here
 	mapOptions = () => ({
 		styles: mapStyles
 	})
 	getBounds = () => (getBounds(this.props))
+	/**
+	 * @TODO The Trailer should be in its own component
+	 */
 	render() {
+		// This loading could have been done better, but it works.
+
+		// isLoading doesn't get updated for some reason when the loading starts
+		// in componentWillMount() so I had to check for the movie's id.
 		if (this.props.isLoading || !this.props.movie.id) {
 			return null;
 		}

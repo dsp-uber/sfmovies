@@ -18,6 +18,8 @@ export default function reducer(state = UI_INIT, action = {}) {
 				...state,
 				isFirstRun: action.isFirstRun
 			};
+		// It was confusing to know when the actions should set loading or unset it,
+		// so I used retain/release pattern for it and it's working great.
 		case RETAIN:
 			const refCountAfterRetain = (state._refCount + 1);
 			return {

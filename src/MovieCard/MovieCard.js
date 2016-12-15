@@ -6,6 +6,7 @@ import MovieGenresContainer from '../Movie/MovieGenresContainer';
 import MoviePropType from '../Movie/MoviePropType';
 import './movieCard.css';
 
+// The empty placeholder
 const PlaceHolderMovieCard = () => (
 	<MovieCard
 		mData={{
@@ -57,6 +58,8 @@ export const MovieCard = ({mData, onClick}) => (
 	</div>
 );
 
+// I had to move this to a separate component, otherwise I couldn't have reused
+// the MovieCard in the PlaceHolder component
 const LazyMovieCard = ({mData, onClick}) => (
 	<LazyLoad
 		height={360}

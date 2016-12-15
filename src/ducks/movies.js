@@ -138,11 +138,8 @@ export function fetchAllMovies() {
 			dispatch(uiActions.retain());
 
 			request(
-				window.location.protocol +
-				'//' +
-				window.location.host +
-				process.env.PUBLIC_URL +
-				'/static/movies.json',
+				window.location.protocol + '//' + window.location.host +
+				process.env.PUBLIC_URL + '/static/movies.json',
 				(err, res, body) => {
 					if (!err && res.statusCode === 200) {
 						let movies = [];
@@ -207,6 +204,12 @@ export function fetchMovieFromTMDbAndSetActive(movie) {
 		dispatch(typeAsDispatch(FETCH_MOVIE_FROM_TMDB_AND_SET_ACTIVE_REQUEST));
 		return new Promise((resolve, reject) => {
 			if (movie.movie.tmdbId) {
+				// This is wrapped in a promise, because even though it's possible to
+				// chain the MovieDB calls, they will execute parallel.
+				/**
+				 * @TODO move enrichMovie() to a separate action \
+				 * so the calls can run parallel
+				*/
 				new Promise((infoResolve, infoReject) => {
 					let enrichedMovie = {
 						movie: {
@@ -323,7 +326,9 @@ export function filterMovies(query) {
 		dispatch(uiActions.retain());
 		const allMovies = getState().movies.allMovies;
 		const visibleMovies = allMovies.filter((movie) => {
-			return (movie.movie.title.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+			return (
+				movie.movie.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+			);
 		});
 		dispatch(uiActions.release());
 		return dispatch(setVisibleMovies(visibleMovies));
