@@ -1,11 +1,15 @@
 [![Build Status](https://travis-ci.org/dsp-uber/sfmovies.svg?branch=master)](https://travis-ci.org/dsp-uber/sfmovies)
 
-[![Dependencies](https://david-dm.org/dsp-uber/sfmovies.svg)](https://david-dm.org/dsp-uber/sfmovies)
-
 # sfmovies
 sfmovies is a small web app that allows you to browse movies that have filming locations in San Francisco. It was made as part of the Uber Front-end Coding Challenge.
 
 **[View Demo - https://dsp-uber.github.io/sfmovies/](https://dsp-uber.github.io/sfmovies/)**
+
+![MovieList](https://github.com/dsp-uber/sfmovies/raw/master/readme-img/movielist.png)
+
+![MovieMap](https://github.com/dsp-uber/sfmovies/raw/master/readme-img/moviemap.png)
+
+![MovieList Responsive](https://github.com/dsp-uber/sfmovies/raw/master/readme-img/movielist-responsive.png)
 
 ## Getting Started
 
