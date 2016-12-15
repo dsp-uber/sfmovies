@@ -54,8 +54,11 @@ Every time code is pushed to any branch, tests are running on [Travis-CI](https:
 
 #### Testing Strategy
 There are [PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html) in every component to do typechecking for every property while developing the app. I very much prefer this way to running an external tool to parse the files or using a non-standard variation of JavaScript.
+
 Testing ReactJS components doesn't really make sense most of the time, because you would be testing if React actually does what it says it does, so most of the components have just 1 test to make sure they render without crashing.
+
 Any utility function for any component or in general is completely covered with tests.
+
 The tricky part in testing was the Redux Actions, Action Creators and Reducers. Only 3 of them are left untested because of time constraints, the rest are all tested and mocked out to make sure they are calling the right actions in the right order and pass the correct state over to the next dispatches.
 
 ### Deployment
@@ -91,7 +94,9 @@ I prefer to organize files by domain and not by type, so you won't find the clas
 Based on [this repo](https://github.com/erikras/ducks-modular-redux) it seemed like a really good idea to bundle all the different parts of Redux together into Ducks and it's been working great. Things are together in one place, and I don't need to import a million modules to get my dispatches flying off.
 
 #### CSS BEM
-I decided to not use LESS or SCSS because of 2 reasons, firstly I would have had to [eject the build configuration for create-react-app](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup) and I wanted to keep the whole scaffolding as lightweight as possible and I wanted to try something different for this project, so I saw that Material Design Lite uses [Block__Element--Modifier](http://getbem.com/introduction/) as their CSS naming convention, which makes for reusable styles, no unnecessary nesting and very simple rules. It made using vanilla CSS so much easier that the only thing I was really missing was variables so I can just reuse colors or unit values throughout the whole app.
+I decided to not use LESS or SCSS because of 2 reasons, firstly I would have had to [eject the build configuration for create-react-app](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup) and I wanted to keep the whole scaffolding as lightweight as possible and I wanted to try something different for this project.
+I saw that Material Design Lite uses [Block__Element--Modifier](http://getbem.com/introduction/) as their CSS naming convention, which makes for reusable styles, no unnecessary nesting and very simple rules.
+It made using vanilla CSS so much easier that the only thing I was really missing was variables so I can just reuse colors or unit values throughout the whole app.
 
 ## Technology list
 * React - https://facebook.github.io/react/
