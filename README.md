@@ -5,6 +5,8 @@
 # sfmovies
 sfmovies is a small web app that allows you to browse movies that have filming locations in San Francisco. It was made as part of the Uber Front-end Coding Challenge.
 
+**[View Demo - https://dsp-uber.github.io/sfmovies/](https://dsp-uber.github.io/sfmovies/)**
+
 ## Getting Started
 
 ### Installation
