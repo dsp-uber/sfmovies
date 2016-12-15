@@ -1,9 +1,9 @@
 // Actions
-const SET_FIRST_RUN = 'sfmovies/ui/SET_FIRST_RUN';
-const RETAIN = 'sfmovies/ui/RETAIN';
-const RELEASE = 'sfmovies/ui/RELEASE';
+export const SET_FIRST_RUN = 'sfmovies/ui/SET_FIRST_RUN';
+export const RETAIN = 'sfmovies/ui/RETAIN';
+export const RELEASE = 'sfmovies/ui/RELEASE';
 
-const UI_INIT = {
+export const UI_INIT = {
 	isFirstRun: true,
 	isLoading: true,
 

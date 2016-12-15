@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	onLocationClick: (location, shouldSetZoom = true) => {
+	setMapCenterAndZoom: (location, shouldSetZoom = true) => {
 		if (shouldSetZoom) {
 			dispatch(setMapZoom(15));
 		}

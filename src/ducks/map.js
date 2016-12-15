@@ -1,8 +1,8 @@
 // Actions
-const SET_MAP_CENTER = 'sfmovies/map/SET_MAP_CENTER';
-const SET_MAP_ZOOM = 'sfmovies/map/SET_MAP_ZOOM';
+export const SET_MAP_CENTER = 'sfmovies/map/SET_MAP_CENTER';
+export const SET_MAP_ZOOM = 'sfmovies/map/SET_MAP_ZOOM';
 
-const MAP_INIT = {
+export const MAP_INIT = {
 	mapCenter: {
 		lat: 0,
 		lng: 0
@@ -14,13 +14,15 @@ const MAP_INIT = {
 export default function reducer(state = MAP_INIT, action = {}) {
 	switch (action.type) {
 		case SET_MAP_CENTER:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				mapCenter: action.mapCenter
-			});
+			};
 		case SET_MAP_ZOOM:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				mapZoom: action.mapZoom
-			});
+			};
 		default:
 			return state;
 	}

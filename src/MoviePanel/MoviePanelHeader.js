@@ -29,7 +29,7 @@ const MoviePanelHeader = ({movie, onTrailerClick}) => (
 				</span>
 			</div>
 			{
-				movie.youtubeTrailerId ? (
+				movie.youtubeTrailerId && (
 					<button
 						onClick={(e) => {
 							e.stopPropagation();
@@ -39,7 +39,7 @@ const MoviePanelHeader = ({movie, onTrailerClick}) => (
 					>
 						<i className="material-icons">movie_creation</i>
 					</button>
-				) : null
+				)
 			}
 		</header>
 	</div>

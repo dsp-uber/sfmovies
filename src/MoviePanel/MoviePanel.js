@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import NumberFormat from 'react-number-format';
 import MoviePanelHeaderContainer from './MoviePanelHeaderContainer';
 import MoviePanelLocationListContainer from './MoviePanelLocationListContainer';
@@ -8,7 +8,7 @@ import MoviePropType from '../Movie/MoviePropType';
 
 import './moviePanel.css';
 
-const MoviePanel = ({movie, genres}) => (
+const MoviePanel = ({movie}) => (
 	<div className="movie-panel mdl-shadow--2dp">
 		<MoviePanelHeaderContainer />
 
@@ -44,8 +44,7 @@ const MoviePanel = ({movie, genres}) => (
 );
 
 MoviePanel.propTypes = {
-	movie: MoviePropType.isRequired,
-	genres: PropTypes.object.isRequired
+	movie: MoviePropType.isRequired
 };
 
 export default MoviePanel;

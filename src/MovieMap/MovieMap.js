@@ -10,47 +10,49 @@ import mapStyles from './mapStyles.json';
 import secretKeys from '../../secrets.json';
 import './movieMap.css';
 
+export const getBounds = ({locations}) => {
+	let bounds = {
+		nw: {lat: 1000, lng: -1000},
+		se: {lat: -1000, lng: 1000}
+	};
+	locations.forEach(function(location) {
+		if (location.lat < bounds.nw.lat) {
+			bounds.nw.lat =  location.lat;
+		}
+		if (location.lon > bounds.nw.lng) {
+			bounds.nw.lng =  location.lon;
+		}
+
+		if (location.lat > bounds.se.lat) {
+			bounds.se.lat =  location.lat;
+		}
+		if (location.lon < bounds.se.lng) {
+			bounds.se.lng =  location.lon;
+		}
+	});
+	bounds.center = {
+		lat: (bounds.nw.lat + bounds.se.lat) / 2,
+		lng: (bounds.nw.lng + bounds.se.lng) / 2,
+	};
+	return bounds;
+}
+
 class MovieMap extends Component {
 	componentDidMount() {
 		if (!this.props.routeParams.id) {
 			this.props.navToMovieList();
 		} else if (!this.props.movie.id) {
 			this.props.fetchMovieById(this.props.routeParams.id).then(() => {
-				this.props.onLocationClick(this.getBounds().center, false);
+				this.props.setMapCenterAndZoom(this.getBounds().center, false);
 			});
 		} else {
-			this.props.onLocationClick(this.getBounds().center, false);
+			this.props.setMapCenterAndZoom(this.getBounds().center, false);
 		}
 	}
 	mapOptions = () => ({
 		styles: mapStyles
 	})
-	getBounds() {
-		let bounds = {
-			nw: {lat: 1000, lng: -1000},
-			se: {lat: -1000, lng: 1000}
-		};
-		this.props.locations.forEach(function(location) {
-			if (location.lat < bounds.nw.lat) {
-				bounds.nw.lat =  location.lat;
-			}
-			if (location.lon > bounds.nw.lng) {
-				bounds.nw.lng =  location.lon;
-			}
-
-			if (location.lat > bounds.se.lat) {
-				bounds.se.lat =  location.lat;
-			}
-			if (location.lon < bounds.se.lng) {
-				bounds.se.lng =  location.lon;
-			}
-		});
-		bounds.center = {
-			lat: (bounds.nw.lat + bounds.se.lat) / 2,
-			lng: (bounds.nw.lng + bounds.se.lng) / 2,
-		};
-		return bounds;
-	}
+	getBounds = () => (getBounds(this.props))
 	render() {
 		if (this.props.isLoading || !this.props.movie.id) {
 			return null;
