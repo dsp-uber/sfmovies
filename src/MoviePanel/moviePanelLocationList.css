@@ -1,8 +1,47 @@
 .movie-panel-locations__title {
-	border-top: 1px solid rgba(0, 0, 0, .1);
 	padding: 16px 16px 0;
 	margin-bottom: 0;
 }
+.movie-panel-locations__list {
+	list-style: none;
+	padding: 16px 0 0;
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
 .movie-panel-locations__elem {
+	position: relative;
 	cursor: pointer;
+	min-height: 56px;
+	border-top: 1px solid rgba(0, 0, 0, .1);
+	padding: 16px;
+}
+.movie-panel-locations__elem:hover {
+	background-color: rgba(0, 0, 0, .05);
+}
+.movie-panel-locations__elem-icon {
+	position: absolute;
+	left: 16px;
+	top: 16px;
+	width: 40px;
+	height: 40px;
+}
+.movie-panel-locations__elem-text {
+	padding-left: 56px;
+	overflow: visible;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 1.25;
+}
+.movie-panel-locations__elem-title {
+	display: block;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	padding-bottom: 8px;
+}
+
+/* Breaking BEM Rules */
+.movie-panel-locations__elem-icon > i.material-icons {
+	font-size: 28px;
+	padding-left: 6px;
+	padding-top: 6px;
 }

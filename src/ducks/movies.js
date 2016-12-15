@@ -314,9 +314,14 @@ export function showMovieOnMap(movie) {
 export function navToMovieMap(movieId) {
 	return (dispatch, getState) => {
 		dispatch(typeAsDispatch(NAV_TO_MOVIE_MAP));
-		return dispatch(push({
-			search: 'map/' + movieId
-		}));
+		const locBeforeTrans = getState().routing.locationBeforeTransitions;
+		if (locBeforeTrans.pathname.indexOf('map/') === -1) {
+			return dispatch(push({
+				search: 'map/' + movieId
+			}));
+		} else {
+			return Promise.resolve();
+		}
 	};
 }
 export function filterMovies(query) {

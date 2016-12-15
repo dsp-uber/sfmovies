@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import MovieGenresContainer from '../Movie/MovieGenresContainer';
+import MovieRating from '../Movie/MovieRating';
 import MoviePropType from '../Movie/MoviePropType';
 import { getAbsImgPath } from '../app/utils';
 
@@ -20,13 +22,26 @@ const MoviePanelHeader = ({movie, onTrailerClick}) => (
 			}}
 		></div>
 		<header className="movie-panel-header mdl-layout__header">
-			<div className="movie-panel-header--row mdl-layout__header-row">
+			<div className="movie-panel-header__row mdl-layout__header-row">
 				<span className="movie-panel-header__title mdl-layout__title">
 					{movie.title}
 					<span className="movie-panel-header__title-year">
 						{' (' + movie.year})
 					</span>
 				</span>
+			</div>
+			<div className="movie-panel-header__row movie-panel-header__row--sub-row mdl-layout__header-row">
+				<div className="movie-panel-header__subtitle">
+					<div className="movie-panel-header-genres">
+						<MovieGenresContainer movieGenres={movie.genres} />
+					</div>
+					<div className="movie-panel-header-rating">
+						<MovieRating
+							voteAverage={movie.voteAverage}
+							voteCount={movie.voteCount}
+						/>
+					</div>
+				</div>
 			</div>
 			{
 				movie.youtubeTrailerId && (

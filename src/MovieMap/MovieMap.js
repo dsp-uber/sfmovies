@@ -75,7 +75,7 @@ class MovieMap extends Component {
 			>
 				<Link to="/">
 					<div className="mdl-layout__drawer-button">
-						<i className="material-icons">arrow_back</i>
+						<i className="movie-map__back-button material-icons">arrow_back</i>
 					</div>
 				</Link>
 				<div className="movie-map__content">

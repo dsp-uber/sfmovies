@@ -3,7 +3,7 @@
 	top: 0;
 	bottom: 0;
 	right: 0;
-	width: 480px;
+	width: 360px;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
@@ -13,11 +13,22 @@
 }
 .movie-panel__content {
 	position: relative;
-	top: 288px;
+	top: 320px;
 	overflow-y: auto;
 	width: inherit;
-	height: calc(100% - 288px);
+	height: calc(100% - 320px);
 }
 .movie-panel-infos {
 	padding: 16px;
+}
+.movie-panel-table {
+	width: 100%;
+}
+.movie-panel-table__key,
+.movie-panel-table__val {
+	width: 50%;
+	padding: 8px 8px 8px 0;
+}
+.movie-panel-table__key {
+	font-weight: 400;
 }

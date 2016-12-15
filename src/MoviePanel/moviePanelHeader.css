@@ -35,15 +35,23 @@
 .movie-panel-header {
 	display: block;
 	position: relative;
+	height: 96px;
 }
-.movie-panel-header--row {
-	padding-left: 32px;
-	padding-right: 32px;
+.movie-panel-header__row {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.movie-panel-header__row.movie-panel-header__row--sub-row {
+	height: 32px;
+	padding-bottom: 8px;
 }
 .movie-panel-header__title {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	display: block;
+	font-size: 24px;
+	padding-top: 16px;
 }
 .movie-panel-header__fab {
 	position: absolute;
@@ -53,4 +61,28 @@
 .movie-panel-header__title-year {
 	font-weight: 200;
 	opacity: .6;
+}
+.movie-panel-header-genres {
+	float: left;
+	color: rgba(255, 255, 255, .5);
+	width: 208px;
+	padding-right: 16px;
+}
+.movie-panel-header-rating {
+	float: right;
+}
+/* Breaking BEM rules */
+.movie-panel-header-rating .movie-rating {
+	width: 112px;
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+.movie-panel-header-rating .movie-rating__star {
+	font-size: 14px;
+}
+.movie-panel-header-rating .movie-rating__text {
+	color: rgba(255, 255, 255, .5);
+	font-size: 11px;
+	bottom: 3px;
 }

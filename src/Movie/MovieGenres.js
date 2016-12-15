@@ -1,12 +1,17 @@
 import React, { PropTypes } from 'react';
 
-const MovieGenres = ({movieGenres, genres}) => (
-	<div>
-		{movieGenres.map((genre) => (
-			genres[genre]
-		)).join(', ')}
-	</div>
-);
+import './movieGenres.css';
+
+const MovieGenres = ({movieGenres, genres}) => {
+	const genresString = movieGenres.map((genre) => (
+		genres[genre]
+	)).join(', ');
+	return (
+		<div className="movie-genres" title={genresString}>
+			{genresString}
+		</div>
+	)
+};
 
 MovieGenres.propTypes = {
 	movieGenres: PropTypes.arrayOf(PropTypes.number),

@@ -156,7 +156,6 @@ Here's a list of things that didn't make it:
 	- Even though the MovieList is responsive, the MovieMap is completely untested on mobile. I wanted to have a drawer slide in from the right when tapping on a button/icon in the AppBar to show the MoviePanel.
 	- The search only looks inside the title of the movies and not in a very smart way. It should be searching in all the possible fields and even suggest autocompletion for what you're currently typing.
 	- There is no 'Showing 2 results' text and no 'No results found' text while searching, it makes the experience lacking.
-	- The styling for the MoviePanel is half-baked, I have a plan to fix it up just didn't have enough time to do so.
 - Bugs
 	- There is a bug with the search field and if you open it once and go to the map view, you need to reload the page to make it work again =/
 	- Some locations have fun facts listed below them and if they are too long, they are cut off.

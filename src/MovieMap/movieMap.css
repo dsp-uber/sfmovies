@@ -18,7 +18,7 @@
 	opacity: 1;
 	transition: opacity .4s ease-out;
 	background: white;
-	width: calc(100% - 480px);
+	width: calc(100% - 360px);
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -28,6 +28,10 @@
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+.movie-map__back-button {
+	color: white;
 }
 
 .movie-trailer {

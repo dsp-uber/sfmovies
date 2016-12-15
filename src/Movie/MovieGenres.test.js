@@ -20,7 +20,7 @@ describe('<MovieGenres />', () => {
 		};
 		const wrapper = shallow(<MovieGenres {...singleGenreProps}/>);
 		const out = (
-			<div>
+			<div className="movie-genres">
 				Science Fiction
 			</div>
 		);
@@ -34,7 +34,7 @@ describe('<MovieGenres />', () => {
 		};
 		const wrapper = shallow(<MovieGenres {...multipleGenreProps}/>);
 		const out = (
-			<div>
+			<div className="movie-genres">
 				Western, Science Fiction
 			</div>
 		);
